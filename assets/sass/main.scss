@@ -1,0 +1,558 @@
+// ANCHOR Import
+@import 'lib/vars';
+@import 'lib/mixins';
+@import 'lib/reboot';
+@import 'lib/fontawesome/font-awesome';
+@import 'lib/fontface';
+@import 'lib/keyframes';
+// @import 'lib/googlefonts';
+// --
+// --
+// --
+// ANCHOR VARIABLES
+// -- color
+$corporateColor: tomato;
+$heightCompForm: 40px;
+$maincolor: #999999;
+* {
+    // border: 1px solid $corporateColor;
+}
+
+// ANCHOR BASIC STYLING
+html,
+body {
+    font-size: $base * 2;
+    font-family: helvetica;
+    line-height: $base * 3;
+    color: $body_color;
+    height: 100vh;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    height: 100%;
+    margin: 0;
+}
+
+// ANCHOR GENERATOR
+#main {
+    background-color: #dddddd;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+// HEADER
+#header {
+    flex: 0 1 80px;
+    width: 100%;
+    h1 {
+        font-size: 0.9em;
+        margin-right: 1em;
+    }
+}
+
+#flexPosition {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+label {
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid black;
+    padding-left: 4px;
+    line-height: 40px;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid black;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    height: $heightCompForm;
+    cursor: ns-resize;
+}
+
+textarea {
+    margin: 1em auto 0 auto;
+    width: 100%;
+    height: 100px;
+    min-height: 100px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+select {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+select:disabled,
+input:disabled {
+    color: rgba(0, 0, 0, 0.20);
+}
+
+.colorInput:disabled {
+    opacity: 0.5;
+}
+
+.compTitle {
+    display: inline-flex;
+}
+
+button {
+    background-color: transparent;
+    border: transparent;
+}
+
+.btn {
+    width: 100%;
+    background-color: transparent;
+    border: transparent;
+    color: black;
+    font-size: 1.5rem;
+    text-align: left;
+    height: 40px;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: red;
+    border: transparent;
+}
+
+.btn:active {
+    background-color: transparent;
+    color: red;
+    border: transparent;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn:focus-within {
+    background-color: transparent;
+    border: transparent;
+    color: red;
+}
+
+// --- MENU
+#menu {
+    font-family: mondwest;
+    position: absolute;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    float: left;
+    width: 300px;
+    height: 100% !important;
+    padding: 100px 1em 1em 1em;
+    -webkit-transition: none;
+    transition: none;
+    background-color: rgba(221, 221, 221, 0.80);
+    h2 {
+        font-size: 1em;
+        font-weight: bold;
+        line-height: 0.1em;
+    }
+    p {
+        line-height: 1em;
+        letter-spacing: -0.02em;
+    }
+    .comp {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .compForm {
+        margin-top: 1rem;
+        width: 100%;
+        margin-bottom: 30px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        border-color: black;
+        border-width: 1px;
+        label {
+            height: $heightCompForm;
+            grid-column: 1 / span 2;
+            margin: 0;
+        }
+        .labelFullWidth {
+            grid-column: 1 / span 6;
+        }
+        input {
+            height: $heightCompForm;
+            grid-column: 3 / span 4;
+            margin: 0;
+        }
+        select {
+            height: $heightCompForm;
+            grid-column: 3 / span 4;
+            margin: 0;
+        }
+        button {
+            border: 1px solid black;
+            height: $heightCompForm;
+            grid-column: 1 / span 2;
+            margin: 0;
+        }
+        .compFormSelfBlock {
+            grid-column: 1 / span 6;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            label {
+                height: $heightCompForm;
+                grid-column: 1 / span 2;
+                margin: 0;
+            }
+            input {
+                height: $heightCompForm;
+                grid-column: 3 / span 3;
+                margin: 0;
+            }
+            select {
+                height: $heightCompForm;
+                grid-column: 3 / span 3;
+                margin: 0;
+            }
+            button {
+                height: $heightCompForm;
+                grid-column: 6 / span 1;
+                margin: 0;
+                border: 1px solid black;
+            }
+        }
+    }
+    .compFormDownload {
+        grid-column: 1 / span 6;
+        margin: 2rem 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        label {
+            height: $heightCompForm;
+            grid-column: 1 / span 2;
+            margin: 0;
+        }
+        button {
+            height: $heightCompForm;
+            grid-column: 3 / span 3;
+            margin: 0;
+            border: 1px solid black;
+        }
+    }
+}
+
+#menu::-webkit-scrollbar {
+    display: none;
+}
+
+//
+//--- THE REAL TIME FORM
+span {
+    color: white;
+}
+
+// --- CANVAS
+#canvasPositioning {
+    overflow: hidden;
+    height: 100%;
+    padding-top: 80px;
+}
+
+#canvasContainer {
+    // POSITIONING CANVAS IN CENTER
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 90%;
+    margin: 0 auto;
+}
+
+#canvas {
+    // POSITIONING CANVAS IN CENTER
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    // GENERAL STYLIING NOT EDITABLE
+    box-shadow: 11px 9px 27px -5px rgba(0, 0, 0, 0.45);
+    // CANVAS STYLING AND EDITABLES
+    background-color: white;
+    margin: auto;
+    padding: 1.5em;
+    overflow: hidden;
+    h1 {
+        margin: 0;
+    }
+    h2 {
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
+}
+
+.info {
+    height: 100vh;
+    background-color: #ddd;
+}
+
+.formLabel {
+    border: transparent;
+}
+
+.guides {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .guide {
+        opacity: 0.2;
+        height: 100%;
+    }
+}
+
+#showMenu {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 90px;
+    z-index: 12;
+    background-color: transparent;
+    border: transparent;
+}
+
+// ANCHOR INDEX STYLES
+#arrow {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
+
+#textHover01:hover {
+    color: red;
+    cursor: pointer;
+}
+
+#textHover02:hover {
+    color: green;
+    cursor: pointer;
+}
+
+#image01 {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 10vh;
+    display: none;
+}
+
+#image02 {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 10vh;
+    display: none;
+}
+
+#mainIndex {
+    background-color: #dddddd;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    font-family: Mondwest;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    font-size: 3rem;
+    line-height: 3rem;
+    label {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .personalizedSelect {
+        width: 100%;
+        display: inline-flex;
+    }
+    select {
+        background-color: transparent;
+        border: transparent;
+        color: red;
+        margin-bottom: 2rem;
+        appearance: none;
+        display: grid;
+    }
+    .selectArrow {
+        height: 2rem;
+        margin-left: 3rem;
+    }
+    .textContainer {
+        position: absolute;
+        left: 40px;
+        top: 70vh;
+        p {
+            width: 70%;
+        }
+    }
+    .textContainer01 {
+        position: absolute;
+        left: 40px;
+        bottom: 40px;
+        p {
+            width: 70%;
+        }
+    }
+}
+
+#mainIndex::-webkit-scrollbar {
+    display: none;
+}
+
+#headerIndex {
+    font-family: Mondwest;
+    background-color: #dddddd;
+    position: fixed;
+    z-index: 24;
+    height: 80px;
+    width: 100%;
+    padding: 30px 40px;
+    display: inline-flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    h1 {
+        font-size: 1rem;
+        margin-right: 1rem;
+    }
+    a {
+        color: black;
+    }
+    ul {
+        list-style: none;
+        display: inline-flex;
+        li {
+            margin-right: 1rem;
+            a:hover {
+                color: red;
+                cursor: pointer;
+            }
+        }
+    }
+    #hamburguerIndex {
+        display: none;
+        position: relative;
+        border: none;
+        background-color: transparent;
+        i {
+            color: black;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    }
+}
+
+button {
+    background-color: transparent;
+}
+
+// ANCHOR MEDIA QUERY
+//
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {}
+// Medium devices (tablets, 768px and up)
+@media screen and (max-width: 768px) {
+    // ANCHOR --- Index
+    #arrow {
+        bottom: 40px;
+        img {
+            width: 100px;
+        }
+    }
+    #headerIndex #hamburguerIndex {
+        display: block;
+    }
+    #headerIndex #headerInfo {
+        display: none;
+        position: absolute;
+        font-size: 2rem;
+        line-height: 3rem;
+        left: 0;
+        top: 80px;
+        width: 100vw;
+        height: 200px;
+        background-color: #dddddd;
+    }
+    #mainIndex {
+        font-size: 2rem;
+        line-height: 2rem;
+        .textContainer {
+            p {
+                width: 90%;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+// @media (max-width: 992px) {}
+@media (max-width: 1200px) {
+    #showMenu {
+        display: block;
+    }
+    #menu {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        z-index: 2;
+        position: absolute;
+    }
+    #flexPosition {
+        display: grid;
+        grid-template-columns: 1fr 1 fr 1fr 1fr;
+    }
+    #canvas_positioning {
+        grid-column: 1 / span 4;
+        margin: 0;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    #menu {
+        display: block;
+    }
+    #canvasPositioning {
+        margin-left: 300px;
+    }
+}
+
+// ANCHOR DEVELOPMENT
+
+/*
+Reglas
+.anchoDinA4 {
+    background-color: red;
+    width: 326mm;
+    height: 1cm;
+}
+*/

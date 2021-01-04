@@ -1,0 +1,64 @@
+$font_route_a: '../fonts/googlefonts/merriweather';
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-black-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-blackitalic-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-blackitalic-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-bold-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-bolditalic-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-bolditalic-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-italic-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-italic-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-light-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-lightitalic-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-lightitalic-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('#{$font_route_a}/merriweather-regular-webfont.woff2') format('woff2'),
+    url('#{$font_route_a}/merriweather-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
