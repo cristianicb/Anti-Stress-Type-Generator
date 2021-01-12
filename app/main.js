@@ -690,16 +690,15 @@ contentBodyText.style.fontWeight = bodyTextFontChangeWeight.value;
 
 // ------ ON INPUT CHANGE
 
-titleFontChangeType.onchange = function() {
+titleFontChangeType.oninput = function() {
     contentTitle.style.fontFamily = this.value;
-
 }
 
-subtitleFontChangeType.onchange = function() {
+subtitleFontChangeType.oninput = function() {
     contentSubtitle.style.fontFamily = this.value;
 }
 
-bodyTextFontChangeType.onchange = function() {
+bodyTextFontChangeType.oninput = function() {
     contentBodyText.style.fontFamily = this.value;
 }
 
@@ -830,7 +829,7 @@ let textModernColors = ["#586C74", "#EEC0DB", "#FDE2C8", "#C6D7C7", "#1B1D1C"];
 let canvasModernColors = ["#D2DB01", "#172BF4", "#178E96", "#FF5034", "#77EEDF"];
 
 let textTraditionalColors = ["#26242B", "#113319", "#942929", "#343A42"];
-let canvasTranditionalColors = ["#F9F0E6", "#F4F5F7", "#F5F5E0", "f1f1f1"];
+let canvasTranditionalColors = ["#F9F0E6", "#F4F5F7", "#F5F5E0", "#f1f1f1"];
 
 
 const colorizeCanvas = (textColor, canvasColor) => {
@@ -862,37 +861,43 @@ const populateColors = () => {
     switch (savedItemColorStyle) {
         case '"bw"':
             colorizeCanvas("#000000", "#ffffff");
-            for (i = 0; i < colorPalettes[0].canvas.length; i++) {
-                optionFonts = document.createElement('option');
-                optionFonts.text = textModernColors[i];
-                optionFonts.value = textModernColors[i];
-                colorPalette.add(optionFonts);
-            }
+            colorPalette.value = "bw";
             break;
         case '"modernColors"':
             colorizeCanvas(textModernColors[0], canvasModernColors[0]);
-            colorPalette.length = 0;
-            for (i = 0; i < colorPalettes[1].canvas.length; i++) {
-                optionFonts = document.createElement('option');
-                optionFonts.text = colorPalettes[1].text[i];
-                optionFonts.value = colorPalettes[1].canvas[i];
-                colorPalette.add(optionFonts);
-            }
+            colorPalette.value = "modernColors";
             break;
         case '"traditionalColors"':
             colorizeCanvas(textTraditionalColors[0], canvasTranditionalColors[0]);
+            colorPalette.value = "traditionalColors";
             break;
         case '"rainbow"':
-            colorizeCanvas("#ff0000", "#ffffff")
+            colorizeCanvas("#ff0000", "#ffffff");
+            colorPalette.value = "rainbow";
             break;
     }
 }
 
 populateColors();
 
+
+
 colorPalette.onchange = function() {
-    inputColorTitle.value = this.value;
-    contentTitle.style.color = this.value;
+    switch (colorPalette.value) {
+        case "bw":
+            savedItemColorStyle = '"bw"';
+            break;
+        case "modernColors":
+            savedItemColorStyle = '"modernColors"';
+            break;
+        case "traditionalColors":
+            savedItemColorStyle = '"traditionalColors"';
+            break;
+        case "rainbow":
+            savedItemColorStyle = '"rainbow"';
+            break;
+    }
+
 }
 
 
@@ -1062,9 +1067,29 @@ $.getJSON(googleApi, function(data) {
                 break;
             case "modernfonts":
                 dataBase = modernFonts;
+                // NOTE NOWWW changeFontsType.
+
+                changeFontsType.length = 0;
+                optionFonts = `
+                <option value="all">All</option>
+                <option value="sans-serif">Sans Serif</option>
+                <option value="display">Display</option>
+                <option value="monospace">Monospace</option>
+                `;
+
+                changeFontsType.innerHTML = optionFonts;
                 break;
             case "traditionalfonts":
                 dataBase = traditionalFonts;
+
+                changeFontsType.length = 0;
+                optionFonts = `
+                <option value="all">All</option>
+                <option value="serif">Serif</option>
+                <option value="handwriting">Handwriting</option>
+                `;
+
+                changeFontsType.innerHTML = optionFonts;
                 break;
         }
         loopFontSelect(dataBase, changeFontsType.value);
@@ -1173,194 +1198,218 @@ const cambiarFuenteComplementariaTitle = (fuenteComplementaria) => {
 
 let modernNum = 0;
 
+const generatorStuff = function() {
+    for (i = 0; i < allFontChange.length; i++) {
+        if (allFontChange[i].disabled == false) {
+            // allFontChange[i].selectedIndex += 1;
+            allFontChange[i].selectedIndex = Math.floor(Math.random() * allFontChange[i].length - 1) + 1;
+        }
+    }
+
+    switch (savedItemColorStyle) {
+        case '"bw"':
+            colorizeCanvas("#000000", "#ffffff")
+            break;
+        case '"modernColors"':
+            if (modernNum < textModernColors.length - 1) {
+                modernNum += 1;
+            } else {
+                modernNum = 0;
+            }
+            colorizeCanvas(textModernColors[modernNum], canvasModernColors[modernNum])
+
+            break;
+        case '"traditionalColors"':
+            if (modernNum < textTraditionalColors.length - 1) {
+                modernNum += 1;
+            } else {
+                modernNum = 0;
+            }
+            colorizeCanvas(textTraditionalColors[modernNum], canvasTranditionalColors[modernNum]);
+
+            break;
+
+        case '"rainbow"':
+
+            let randomColor = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
+            let randomColor02 = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
+            colorizeCanvas(randomColor, randomColor02);
+
+
+            break;
+
+    }
+
+    // colorPalette.value = inputColorTitle.value.toUpperCase()
+
+
+
+
+
+    // FIXME Poner esto de escoger la tipo de forma bonita
+    if (changeDocStyle.value !== "data") {
+        switch (titleFontChangeType.value) {
+            case 'Crimson Text':
+                cambiarFuenteComplementaria('Work Sans');
+                break;
+            case 'Oswald':
+                cambiarFuenteComplementaria('Cardo');
+                break;
+            case 'Quicksand':
+                cambiarFuenteComplementaria('Quicksand');
+                break;
+            case 'Archivo Black':
+                cambiarFuenteComplementaria('Judson');
+                break;
+            case 'Abril Fatface':
+                cambiarFuenteComplementaria('Roboto');
+                break;
+            case 'Archivo':
+                cambiarFuenteComplementaria('Open Sans');
+                break;
+            case 'Montserrat':
+                cambiarFuenteComplementaria('Work Sans');
+                break;
+            case 'Prata':
+                cambiarFuenteComplementaria('Lato');
+                break;
+            case 'Montserrat':
+                cambiarFuenteComplementaria('Lora');
+                break;
+            case 'Playfair Display':
+                cambiarFuenteComplementaria('Chivo');
+                break;
+        }
+        contentTitle.style.fontFamily = titleFontChangeType.value;
+        contentSubtitle.style.fontFamily = subtitleFontChangeType.value;
+        contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
+
+    } else {
+        contentTitle.style.fontFamily = titleFontChangeType.value;
+        contentSubtitle.style.fontFamily = subtitleFontChangeType.value;
+        contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
+    }
+
+
+
+    let rnd = Math.floor(Math.random() * 750) + 250;
+    let rnd02 = Math.floor(Math.random() * 750) + 250;
+    let rndmarg = Math.floor(Math.random() * 45) + 5;
+    let rndTitle = Math.floor(Math.random() * 20) + 40;
+    let rndSubtitle = Math.floor(Math.random() * 1) + 20;
+    let rndBodyText = Math.floor(Math.random() * 24) + 8;
+
+    if (inputMargin.disabled == false) {
+        inputMargin.value = rndmarg;
+        canvas.style.padding = inputMargin.value + "px";
+        guides.style.padding = inputMargin.value + "px";
+    }
+    if (inputHeight.disabled == false) {
+        inputHeight.value = rnd;
+        canvas.style.height = rnd / 10 + "%";
+    }
+    if (inputWidth.disabled == false) {
+        inputWidth.value = rnd02;
+        canvas.style.width = rnd02 / 10 + "%";
+    }
+
+    switch (changeFontScaling.value) {
+        case "0":
+            if (inputTitleSize.disabled == false) {
+                contentTitle.style.fontSize = rndTitle + "pt";
+                contentTitle.style.lineHeight = rndTitle + "pt";
+                inputTitleSize.value = rndTitle;
+                inputLineHeightTitle.value = rndTitle;
+            }
+
+            if (inputSubitleSize.disabled == false) {
+                contentSubtitle.style.fontSize = rndSubtitle + "pt";
+                contentSubtitle.style.lineHeight = rndSubtitle + 10 + "pt";
+                inputSubitleSize.value = rndSubtitle;
+                inputLineHeightSubtitle.value = rndSubtitle + 10;
+            }
+
+            if (inputBodyTextSize.disabled == false) {
+                contentBodyText.style.fontSize = rndBodyText + "pt";
+                contentBodyText.style.lineHeight = rndBodyText + "pt";
+                inputBodyTextSize.value = rndBodyText;
+                inputLineHeightBodyText.value = rndBodyText;
+            }
+            break;
+        case '1.25':
+            if (inputBodyTextSize.disabled == false) {
+                contentBodyText.style.fontSize = rndBodyText + "pt";
+                contentBodyText.style.lineHeight = rndBodyText + 5 + "pt";
+                inputBodyTextSize.value = rndBodyText;
+                inputLineHeightBodyText.value = rndBodyText;
+            }
+            if (inputSubitleSize.disabled == false) {
+                contentSubtitle.style.fontSize = rndBodyText * 1.25 + "pt";
+                inputSubitleSize.value = rndBodyText * 1.25;
+                contentSubtitle.style.lineHeight = rndBodyText * 1.25 + 10 + "pt";
+                inputLineHeightSubtitle.value = rndBodyText * 1.25;
+            }
+            if (inputTitleSize.disabled == false) {
+                contentTitle.style.fontSize = rndBodyText * 1.25 * 2 + "pt";
+                inputTitleSize.value = rndBodyText * 1.25 * 2;
+                inputLineHeightTitle.value = rndBodyText * 1.25 * 2;
+                contentTitle.style.lineHeight = rndBodyText * 1.25 * 2 + "pt";
+
+            }
+            break;
+        case '1.2':
+            if (inputBodyTextSize.disabled == false) {
+                contentBodyText.style.fontSize = rndBodyText + "pt";
+                contentBodyText.style.lineHeight = rndBodyText + 5 + "pt";
+                inputBodyTextSize.value = rndBodyText;
+                inputLineHeightBodyText.value = rndBodyText;
+            }
+            if (inputSubitleSize.disabled == false) {
+                contentSubtitle.style.fontSize = rndBodyText * 1.2 + "pt";
+                inputSubitleSize.value = rndBodyText * 1.2;
+                contentSubtitle.style.lineHeight = rndBodyText * 1.2 + 10 + "pt";
+                inputLineHeightSubtitle.value = rndBodyText * 1.2;
+            }
+            if (inputTitleSize.disabled == false) {
+                contentTitle.style.fontSize = rndBodyText * 1.2 * 2 + "pt";
+                inputTitleSize.value = rndBodyText * 1.2 * 2;
+                inputLineHeightTitle.value = rndBodyText * 1.2 * 2;
+                contentTitle.style.lineHeight = rndBodyText * 1.2 * 2 + "pt";
+
+            }
+            break;
+    }
+}
+
+
 document.body.onkeyup = function(e) {
 
     // ANCHOR --- Prevent space clicking on highlighted buttons
-
     if ($(document.activeElement).is('button') &&
         (e.keyCode === 13 || e.keyCode === 32)) {
         e.preventDefault();
     }
 
-    if (numero < 4) {
-        numero += 1;
-    } else if (numero == 4) {
-        numero = 0;
-    }
-
-
-
+    // if (numero < 4) {
+    //     numero += 1;
+    // } else if (numero == 4) {
+    //     numero = 0;
+    // }
 
     // ANCHOR --- GENERATOR START
 
-
-
     if ($('textarea:focus').length == 0 && $('input:focus').length == 0) {
         if (e.keyCode == 32) {
-
-            for (i = 0; i < allFontChange.length; i++) {
-                if (allFontChange[i].disabled == false) {
-                    // allFontChange[i].selectedIndex += 1;
-                    allFontChange[i].selectedIndex = Math.floor(Math.random() * allFontChange[i].length - 1) + 1;
-                }
-            }
-
-            switch (savedItemColorStyle) {
-                case '"bw"':
-                    colorizeCanvas("#000000", "#ffffff")
-                    break;
-                case '"modernColors"':
-                    if (modernNum < textModernColors.length - 1) {
-                        modernNum += 1;
-                    } else {
-                        modernNum = 0;
-                    }
-                    colorizeCanvas(textModernColors[modernNum], canvasModernColors[modernNum])
-
-                    break;
-                case '"traditionalColors"':
-                    if (modernNum < textTraditionalColors.length - 1) {
-                        modernNum += 1;
-                    } else {
-                        modernNum = 0;
-                    }
-                    colorizeCanvas(textTraditionalColors[modernNum], canvasTranditionalColors[modernNum]);
-
-                    break;
-
-                case '"rainbow"':
-
-                    let randomColor = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
-                    let randomColor02 = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
-                    colorizeCanvas(randomColor, randomColor02);
-
-
-                    break;
-
-            }
-
-            colorPalette.value = inputColorTitle.value.toUpperCase()
-
-
-
-
-
-            // FIXME Poner esto de escoger la tipo de forma bonita
-            if (changeDocStyle.value !== "data") {
-                switch (titleFontChangeType.value) {
-                    case 'Crimson Text':
-                        cambiarFuenteComplementaria('Work Sans');
-                        break;
-                    case 'Oswald':
-                        cambiarFuenteComplementaria('Cardo');
-                        break;
-                    case 'Quicksand':
-                        cambiarFuenteComplementaria('Quicksand');
-                        break;
-                    case 'Archivo Black':
-                        cambiarFuenteComplementaria('Judson');
-                        break;
-                    case 'Abril Fatface':
-                        cambiarFuenteComplementaria('Roboto');
-                        break;
-                    case 'Archivo':
-                        cambiarFuenteComplementaria('Open Sans');
-                        break;
-                    case 'Montserrat':
-                        cambiarFuenteComplementaria('Work Sans');
-                        break;
-                    case 'Prata':
-                        cambiarFuenteComplementaria('Lato');
-                        break;
-                    case 'Montserrat':
-                        cambiarFuenteComplementaria('Lora');
-                        break;
-                    case 'Playfair Display':
-                        cambiarFuenteComplementaria('Chivo');
-                        break;
-                }
-                contentTitle.style.fontFamily = titleFontChangeType.value;
-                contentSubtitle.style.fontFamily = subtitleFontChangeType.value;
-                contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
-
-            } else {
-                contentTitle.style.fontFamily = titleFontChangeType.value;
-                contentSubtitle.style.fontFamily = subtitleFontChangeType.value;
-                contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
-            }
-
-
-
-            let rnd = Math.floor(Math.random() * 750) + 250;
-            let rnd02 = Math.floor(Math.random() * 750) + 250;
-            let rndmarg = Math.floor(Math.random() * 45) + 5;
-            let rndTitle = Math.floor(Math.random() * 20) + 40;
-            let rndSubtitle = Math.floor(Math.random() * 1) + 20;
-            let rndBodyText = Math.floor(Math.random() * 24) + 8;
-
-            if (inputMargin.disabled == false) {
-                inputMargin.value = rndmarg;
-                canvas.style.padding = inputMargin.value + "px";
-                guides.style.padding = inputMargin.value + "px";
-            }
-            if (inputHeight.disabled == false) {
-                inputHeight.value = rnd;
-                canvas.style.height = rnd / 10 + "%";
-            }
-            if (inputWidth.disabled == false) {
-                inputWidth.value = rnd02;
-                canvas.style.width = rnd02 / 10 + "%";
-            }
-
-            switch (changeFontScaling.value) {
-                case "0":
-                    if (inputTitleSize.disabled == false) {
-                        contentTitle.style.fontSize = rndTitle + "pt";
-                        inputTitleSize.value = rndTitle;
-                    }
-
-                    if (inputSubitleSize.disabled == false) {
-                        contentSubtitle.style.fontSize = rndSubtitle + "pt";
-                        inputSubitleSize.value = rndSubtitle;
-                    }
-
-                    if (inputBodyTextSize.disabled == false) {
-                        contentBodyText.style.fontSize = rndBodyText + "pt";
-                        inputBodyTextSize.value = rndBodyText;
-                    }
-
-
-
-
-                    break;
-                case '1.25':
-                    contentBodyText.style.fontSize = rndBodyText + "pt";
-                    contentBodyText.style.lineHeight = rndBodyText + 5 + "pt";
-                    inputBodyTextSize.value = rndBodyText;
-                    inputLineHeightBodyText.value = rndBodyText;
-
-                    contentSubtitle.style.fontSize = rndBodyText * 1.25 + "pt";
-                    inputSubitleSize.value = rndBodyText * 1.25;
-                    contentSubtitle.style.lineHeight = rndBodyText * 1.25 + 10 + "pt";
-                    inputLineHeightSubtitle.value = rndBodyText * 1.25;
-
-                    contentTitle.style.fontSize = rndBodyText * 1.25 * 2 + "pt";
-                    inputTitleSize.value = rndBodyText * 1.25 * 2;
-                    inputLineHeightTitle.value = rndBodyText * 1.25 * 2;
-                    contentTitle.style.lineHeight = rndBodyText * 1.25 * 2 + "pt";
-                    break;
-                case '1.2':
-                    contentBodyText.style.fontSize = rndBodyText + "pt";
-                    inputBodyTextSize.value = rndBodyText;
-                    contentSubtitle.style.fontSize = rndBodyText * 1.2 + "pt";
-                    contentTitle.style.fontSize = rndBodyText * 1.2 * 2 + "pt";
-                    console.log(rndBodyText)
-                    break;
-            }
+            generatorStuff();
         }
     }
 }
 
+let spaceClick = document.getElementById("spaceClick");
+
+spaceClick.onclick = function() {
+    generatorStuff();
+}
 
 // ANCHOR SCROLLABLE
 

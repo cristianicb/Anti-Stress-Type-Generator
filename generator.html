@@ -29,15 +29,15 @@
             <h1><a href="index.html">Anti-Stress Type Generator</a></h1>
 
             <ul id="headerInfo">
-                <li> <a href="">Instructions</a></li>
-                <li> <a href="">About us</a></li>
+                <li> <a href="intructions.html">Instructions</a></li>
+                <li> <a href="aboutus.html">About us</a></li>
             </ul>
 
             <button id="hamburguerIndex"> <i class=" material-icons md-14 ">menu</i></button>
             <button id="showMenu"> <i class="material-icons md-14">east</i></button>
         </nav>
 
-        <div class="infoSpaceBar">
+        <div class="infoSpaceBar" id="spaceClick">
             <p>Hit Space to Generate!</p>
         </div>
 
@@ -91,7 +91,12 @@
                     </div>
                     <div class="compForm">
                         <label for="colorPalette">Palette:</label>
-                        <select name="titleFontChangeWeight" id="colorPalette" class="colorPalette blockeable title"></select>
+                        <select name="titleFontChangeWeight" id="colorPalette" class="colorPalette blockeable title">
+                            <option value="bw">Black & white</option>
+                            <option value="modernColors">Modern</option>
+                            <option value="traditionalColors">Traditional</option>
+                            <option value="rainbow">Rainbow pls</option>
+                        </select>
                     </div>
 
                     <!-- ANCHOR TITLE-->

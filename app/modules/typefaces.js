@@ -1,5 +1,5 @@
-let fontNameModern = ["Crimson Text", "Work Sans", "Oswald", "Cardo", "Quicksand", "Archivo Black", "Judson", "Abril Fatface", "Roboto", "Archivo", "Open Sans", "Montserrat", "Prata", "Lato", "Lora", "Playfair Display", "Chivo"];
-let fontNameTraditional = ["Ibarra Real Nova", "Lora", "Merriweather", "Piazzolla", "Bitter", "Arvo"];
+let fontNameModern = ["Work Sans", "Oswald", "Quicksand", "Archivo Black", "Roboto", "Archivo", "Open Sans", "Montserrat", "Prata", "Lato", "Chivo"];
+let fontNameTraditional = ["Crimson Text", "Ibarra Real Nova", "Lora", "Merriweather", "Piazzolla", "Bitter", "Arvo", "Lora", "Judson"];
 
 
 fontNameModern.sort(function(a, b) {

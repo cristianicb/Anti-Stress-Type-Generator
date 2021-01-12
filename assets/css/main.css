@@ -3444,6 +3444,29 @@ body {
   right: 40px;
   padding: 8px 10px;
   text-align: center;
+  z-index: 99;
+  -webkit-box-shadow: 5px 5px 0px black;
+          box-shadow: 5px 5px 0px black;
+  background-color: #ddd;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.infoSpaceBar:hover {
+  bottom: 22px;
+  right: 42px;
+  -webkit-box-shadow: 7px 7px 0px black;
+          box-shadow: 7px 7px 0px black;
+  cursor: pointer;
+}
+
+.infoSpaceBar:active {
+  bottom: 18px;
+  right: 38px;
+  -webkit-box-shadow: 3px 3px 0px black;
+          box-shadow: 3px 3px 0px black;
 }
 
 .infoSpaceBar p {
@@ -3755,6 +3778,11 @@ span {
   border: transparent;
 }
 
+.containerForm {
+  border-bottom: solid 1px black;
+  margin-bottom: 0.5em;
+}
+
 .guides {
   width: 100%;
   height: 100%;
@@ -3789,13 +3817,21 @@ span {
   bottom: 40px;
 }
 
+#textHover01 {
+  color: green;
+}
+
+#textHover02 {
+  color: green;
+}
+
 #textHover01:hover {
   color: red;
   cursor: pointer;
 }
 
 #textHover02:hover {
-  color: green;
+  color: red;
   cursor: pointer;
 }
 
@@ -3845,6 +3881,7 @@ span {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  font-size: 0.8em;
 }
 
 #mainIndex select {
