@@ -5,7 +5,6 @@
 @import 'lib/fontawesome/font-awesome';
 @import 'lib/fontface';
 @import 'lib/keyframes';
-// @import 'lib/googlefonts';
 // --
 // --
 // --
@@ -21,6 +20,7 @@ $maincolor: #999999;
 // ANCHOR BASIC STYLING
 html,
 body {
+    font-family: "Mondwest", 'Times New Roman', Times, serif;
     font-size: $base * 2;
     font-family: helvetica;
     line-height: $base * 3;
@@ -54,6 +54,21 @@ body {
 #flexPosition {
     flex: 1 1 auto;
     position: relative;
+}
+
+.infoSpaceBar {
+    height: 40px;
+    border-radius: 1in;
+    border: solid 1px black;
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    padding: 8px 10px;
+    text-align: center;
+    p {
+        margin: auto;
+        font-family: "Mondwest";
+    }
 }
 
 label {
@@ -140,7 +155,7 @@ button {
 
 // --- MENU
 #menu {
-    font-family: mondwest;
+    font-family: "Mondwest", 'Times New Roman', Times, serif;
     position: absolute;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -225,6 +240,9 @@ button {
                 margin: 0;
                 border: 1px solid black;
             }
+        }
+        .longButton {
+            grid-column: 1 / span 6;
         }
     }
     .compFormDownload {

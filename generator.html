@@ -37,9 +37,9 @@
             <button id="showMenu"> <i class="material-icons md-14">east</i></button>
         </nav>
 
-
-
-
+        <div class="infoSpaceBar">
+            <p>Hit Space to Generate!</p>
+        </div>
 
         <div id="flexPosition">
 
@@ -76,6 +76,23 @@
                             <option value="monospace">Monospace</option>
                         </select>
                     </div>
+                    <div class="compForm">
+                        <label for="changeFontScaling">Font Scale:</label>
+                        <select name="changeFontScaling" id="changeFontScaling" class="blockeable">
+                            <option value="0">Random</option>
+                            <option value="1.25">1.250 - Major Third</option>
+                            <option value="1.2">1.200 - Minor Third</option>
+                        </select>
+
+                        <button class="changeFontSizeScale longButton" type='button'>Set to Title</button>
+                        <button class="changeFontSizeScale longButton" type='button'>Set to Subtitle</button>
+                        <button class="changeFontSizeScale longButton" type='button'>Set to Body Text</button>
+
+                    </div>
+                    <div class="compForm">
+                        <label for="colorPalette">Palette:</label>
+                        <select name="titleFontChangeWeight" id="colorPalette" class="colorPalette blockeable title"></select>
+                    </div>
 
                     <!-- ANCHOR TITLE-->
 
@@ -86,34 +103,39 @@
                         </div>
                         <div id="toggleTitle" class="collapse show">
                             <div class="compForm">
-                                <label>Font:</label>
-                                <select name="titleFontChange" id="titleFontChange" class="blockeable title fontChange">
-                              </select>
-
-                                <label>Style:</label>
-                                <select name="titleFontChangeWeight" id="titleFontChangeWeight" class="blockeable title fontChangeWeight">
-                                    <option value="100">Thin</option>
-                                    <option value="300">Light</option>
-                                    <option value="400">Regular</option>
-                                    <option value="700">Bold</option>
-                                    <option value="900">Black</option>
-                                </select>
-                                <label for="inputTitleSize">Title Size:</label>
-                                <input id="inputTitleSize" class="inputEditTitle blockeable wheelable" name="inputTitleSize" type="number" value="32" min="18" max="72" step="1">
-                                <label for="inputLineHeightTitle">Line-Height:</label>
-                                <input id="inputLineHeightTitle" class="inputEditTitle blockeable wheelable" name="inputSubitleSize" type="number" value="32" min="0" max="64" step="1">
-                                <label>Color:</label>
-                                <input id="inputColorTitle" type="color" value="#000000" class="colorInput blockeable">
                                 <div class="compFormSelfBlock">
-                                    <label for="colorPalette">Palette:</label>
-                                    <select name="titleFontChangeWeight" id="colorPalette" class="colorPalette blockeable title fontChangeWeight">
-                                       
-                                    </select>
-                                    <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
+                                    <label>Font:</label>
+                                    <select name="titleFontChange" id="titleFontChange" class="blockeable title fontChange"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                 </div>
+
+                                <div class="compFormSelfBlock">
+                                    <label>Style:</label>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeWeight" class="blockeable title fontChangeWeight"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
+                                    <label for="inputTitleSize">Title Size:</label>
+                                    <input id="inputTitleSize" class="inputEditTitle blockeable wheelable" name="inputTitleSize" type="number" value="32" min="18" max="72" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
+                                    <label for="inputLineHeightTitle">Line-Height:</label>
+                                    <input id="inputLineHeightTitle" class="inputEditTitle blockeable wheelable" name="inputSubitleSize" type="number" value="32" min="0" max="64" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label>Color:</label>
+                                    <input id="inputColorTitle" type="color" value="#000000" class="colorInput blockeable">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
 
                     <!-- ANCHOR SUBTITLE-->
 
@@ -126,24 +148,32 @@
 
                         <div id="toggleSubtitle" class="collapse">
                             <div class="compForm">
-                                <label for="subtitleFontChange">Font:</label>
-                                <select name="subtitleFontChange" id="subtitleFontChange" class="blockeable subtitle fontChange">
-                            <option value="a">a</option>
-                            <option value="a">a</option>
-                        </select>
+                                <div class="compFormSelfBlock">
+                                    <label for="subtitleFontChange">Font:</label>
+                                    <select name="subtitleFontChange" id="subtitleFontChange" class="blockeable subtitle fontChange"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
 
-                                <label>Style:</label>
-                                <select name="subTitleFontChangeWeight" id="subTitleFontChangeWeight" class="blockeable title fontChangeWeight">
-                                    <option value="100">thin</option>
-                                    <option value="regular">regular</option>
-                                    <option value="bold">bold</option>
-                                </select>
-                                <label for="inputSubitleSize">Subtitle Size:</label>
-                                <input id="inputSubitleSize" class="inputEditSubtitle blockeable wheelable" name="inputSubitleSize" type="number" value="18" min="8" max="32" step="1">
-                                <label for="inputLineHeightSubtitle">Line-Height:</label>
-                                <input id="inputLineHeightSubtitle" class="inputEditSubtitle blockeable wheelable" name="inputSubitleSize" type="number" value="50" min="0" max="64" step="1">
-                                <label>Color:</label>
-                                <input id="inputColorSubtitle" type="color" value="#000000" class="colorPalette blockeable">
+                                <div class="compFormSelfBlock">
+                                    <label>Style:</label>
+                                    <select name="subTitleFontChangeWeight" id="subTitleFontChangeWeight" class="blockeable title fontChangeWeight"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label for="inputSubitleSize">Subtitle Size:</label>
+                                    <input id="inputSubitleSize" class="inputEditSubtitle blockeable wheelable" name="inputSubitleSize" type="number" value="18" min="8" max="32" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label for="inputLineHeightSubtitle">Line-Height:</label>
+                                    <input id="inputLineHeightSubtitle" class="inputEditSubtitle blockeable wheelable" name="inputSubitleSize" type="number" value="50" min="0" max="64" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label>Color:</label>
+                                    <input id="inputColorSubtitle" type="color" value="#000000" class="colorInput blockeable">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,24 +188,32 @@
 
                         <div id="toggleBodyText" class="collapse">
                             <div class="compForm">
-                                <label class="labelFullWidth">Body Text</label>
-                                <label for="bodyTextFontChange">Font:</label>
-                                <select name="bodyTextFontChange" id="bodyTextFontChange" class="blockeable bodyText fontChange">
-                                    <option value="a">a</option>
-                                    <option value="a">a</option>
-                                </select>
-                                <label>Style:</label>
-                                <select name="bodyTextFontChangeWeight" id="bodyTextFontChangeWeight" class="blockeable title fontChangeWeight">
-                                    <option value="100">thin</option>
-                                    <option value="regular">regular</option>
-                                    <option value="bold">bold</option>
-                                </select>
-                                <label for="inputBodyTextSize">B.T Size:</label>
-                                <input id="inputBodyTextSize" class="inputEditBodyText blockeable wheelable" name="inputBodyTextSize" type="number" value="12" min="8" max="32" step="1">
-                                <label for="inputLineHeightBodyText">Line-Height:</label>
-                                <input id="inputLineHeightBodyText" class="inputEditBodyText blockeable wheelable" name="inputSubitleSize" type="number" value="12" min="0" max="64" step="1">
-                                <label>Color:</label>
-                                <input id="inputColorBodyText" type="color" value="#000000" class="colorPalette blockeable">
+                                <div class="compFormSelfBlock">
+                                    <label for="bodyTextFontChange">Font:</label>
+                                    <select name="bodyTextFontChange" id="bodyTextFontChange" class="blockeable bodyText fontChange"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label>Style:</label>
+                                    <select name="bodyTextFontChangeWeight" id="bodyTextFontChangeWeight" class="blockeable bodyText fontChangeWeight"></select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label for="inputBodyTextSize">B.T Size:</label>
+                                    <input id="inputBodyTextSize" class="inputEditBodyText blockeable wheelable" name="inputBodyTextSize" type="number" value="12" min="8" max="32" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+                                <div class="compFormSelfBlock">
+                                    <label for="inputLineHeightBodyText">Line-Height:</label>
+                                    <input id="inputLineHeightBodyText" class="inputEditBodyText blockeable wheelable" name="inputSubitleSize" type="number" value="12" min="0" max="64" step="1">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
+                                    <label>Color:</label>
+                                    <input id="inputColorBodyText" type="color" value="#000000" class="colorInput blockeable">
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -186,7 +224,7 @@
                         <div>
                             <div class="compTitle">
                                 <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
-                                <a class="btn labelFullWidth" data-toggle="collapse" href="#toggleCanvas" role="button" aria-expanded="false" aria-controls="toggleCanvas">Canvas <i class="material-icons md-14">keyboard_arrow_down</i></a>
+                                <a class="btn labelFullWidth" data-toggle="collapse" href="#toggleCanvas" role="button" aria-expanded="false" aria-controls="toggleCanvas">Canvas<i class="material-icons md-14">keyboard_arrow_down</i></a>
                             </div>
                             <div id="toggleCanvas" class="collapse show">
                                 <div class="compForm">
@@ -194,13 +232,13 @@
                                     <div class="compFormSelfBlock">
                                         <label for="canvasSizePresets">Presets:</label>
                                         <select name="canvasSizePresets" id="canvasSizePresets" class="blockeable wheelable">
-                                        <option value="personalized">Personalized</option>
-                                        <option value="dinA">ISO A</option>
-                                        <option value="ansiLetter">US Letter</option>
-                                        <option value="ansiLegal">US Legal</option>
-                                        <option value="desktop">Desktop</option>
-                                        <option value="iphonex">iPhone X</option>
-                                    </select>
+                                            <option value="personalized">Personalized</option>
+                                            <option value="dinA">ISO A</option>
+                                            <option value="ansiLetter">US Letter</option>
+                                            <option value="ansiLegal">US Legal</option>
+                                            <option value="desktop">Desktop</option>
+                                            <option value="iphonex">iPhone X</option>
+                                        </select>
                                         <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                     </div>
                                     <!-- Inputs used to change the CANVAS SIZING -->
@@ -216,14 +254,36 @@
                                         <input id="inputWidth" class="inputEdit blockeable wheelable" name="inputWidth" type="number" value="1000" min="250" max="1000" step="1">
                                         <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                     </div>
+                                    <!-- ANCHOR TEXT ALIGN -->
+                                    <div class="compFormSelfBlock">
+                                        <label for="inputTextAlign">T.Align:</label>
+                                        <select name="inputTextAlign" id="inputTextAlign" class="blockeable wheelable">
+                                            <option value="left">Left</option>
+                                            <option value="center">Center</option>
+                                            <option value="right">Right</option>
+                                            <option value="justify">Justify</option>
+                                        </select>
+                                        <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+
+                                    </div>
                                     <!-- ANCHOR CANVAS ORIENTATION -->
                                     <button id="switch" type='button' class="labelFullWidth">Switch</button>
-                                    <label for="inputColorCanvas">Color:</label>
-                                    <input id="inputColorCanvas" class="colorPalette blockeable" type="color" value="#FFFFFF">
-                                    <!-- TODO BLOCK THE PROPORTION -->
+
+                                    <div class="compFormSelfBlock">
+                                        <label for="inputColorCanvas">Color:</label>
+                                        <input id="inputColorCanvas" type="color" value="#FFFFFF" class="colorInput blockeable">
+                                        <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                    </div>
+                                    <!-- TODO BLOCK THE PROPORTION 
                                     <label for="btnBlockProportion">Block:</label>
                                     <button id="btnBlockProportion" type='button' value="on" style="display: none;">Block Proportion</button>
-
+                                        -->
+                                    <!-- Input used to change the MARGIN OF THE CANVAS -->
+                                    <div class="compFormSelfBlock">
+                                        <label for="inputMargin">Margin:</label>
+                                        <input id="inputMargin" class="blockeable wheelable" name="inputMargin" type="number" value="20" min="0" max="75" step="1">
+                                        <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -240,34 +300,24 @@
                             <div id="toggleGuides" class="collapse show">
                                 <div class="compForm">
 
-                                    <button id="showGuides" type='button' class="labelFullWidth"><i id="showGuidesIcon" class="material-icons md-14">visibility</i></button>
-                                    <div class="compFormSelfBlock">
-                                        <label for="columnsQuantity">Columns:</label>
-                                        <input id="columnsQuantity" class="blockeable wheelable" name="inputMargin" type="number" value="2" min="1" max="12" step="1">
-                                        <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
+                                    <button id="showGuides" type='button' class="labelFullWidth"><i id="showGuidesIcon" class="material-icons md-14">visibility_off</i></button>
 
-                                    </div>
-                                    <div class="compFormSelfBlock">
-                                        <label for="rowQuantity">Rows:</label>
-                                        <input id="rowQuantity" class="blockeable wheelable" name="inputMargin" type="number" value="1" min="1" max="8" step="1">
-                                        <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
+                                    <label for="columnsQuantity">Columns:</label>
+                                    <input id="columnsQuantity" class="blockeable wheelable" name="inputMargin" type="number" value="2" min="1" max="12" step="1">
 
-                                    </div>
-                                    <div class="compFormSelfBlock">
-                                        <label for="gridGap">Grid Gap:</label>
-                                        <input id="gridGap" class="blockeable wheelable" name="inputMargin" type="number" value="5" min="2" max="20" step="1">
-                                        <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
-                                    </div>
+
+                                    <label for="rowQuantity">Rows:</label>
+                                    <input id="rowQuantity" class="blockeable wheelable" name="inputMargin" type="number" value="1" min="1" max="8" step="1">
+
+
+                                    <label for="gridGap">Grid Gap:</label>
+                                    <input id="gridGap" class="blockeable wheelable" name="inputMargin" type="number" value="5" min="2" max="20" step="1">
+
                                     <label for="inputColorGuides">Color:</label>
                                     <input id="inputColorGuides" type="color" value="#FF0000">
                                     <label for="guideOpcity">Opacity:</label>
                                     <input id="guideOpcity" class="blockeable wheelable" name="guideOpcity" type="number" value="0.2" min="0" max="1" step="0.05">
-                                    <!-- Input used to change the MARGIN OF THE CANVAS -->
-                                    <div class="compFormSelfBlock">
-                                        <label for="inputMargin">Margin:</label>
-                                        <input id="inputMargin" class="blockeable wheelable" name="inputMargin" type="number" value="20" min="0" max="75" step="1">
-                                        <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -291,7 +341,7 @@
                         <h1 id="contentTitle">Title</h1>
                         <h2 id="contentSubtitle">Subtitle</h2>
                         <p id="contentBodyText"></p>
-                        <div id="guides" class="guides" style="display: grid;">
+                        <div id="guides" class="guides" style="display: none;">
                             <div class="guide"></div>
                             <div class="guide"></div>
                         </div>

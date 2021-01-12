@@ -3,6 +3,7 @@ let selectFontType = document.getElementById("fontType");
 let selectCanvasPreset = document.getElementById("canvasPreset");
 let selectFontStyle = document.getElementById("fontStyle");
 let selectColorStyle = document.getElementById("colorStyle");
+let changeFontScaling = document.getElementById("changeFontScaling");
 
 if (typeof(Storage) !== undefined) {
     // Código  compatible
@@ -14,6 +15,7 @@ if (typeof(Storage) !== undefined) {
         sessionStorage.setItem("canvasPreset", JSON.stringify(selectCanvasPreset.value));
         sessionStorage.setItem("fontStyle", JSON.stringify(selectFontStyle.value));
         sessionStorage.setItem("colorStyle", JSON.stringify(selectColorStyle.value));
+        sessionStorage.setItem("changeFontScaling", JSON.stringify(changeFontScaling.value));
     }
 
 } else {

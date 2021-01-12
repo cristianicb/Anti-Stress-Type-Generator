@@ -89,6 +89,8 @@ let inputLineHeightTitle = document.getElementById("inputLineHeightTitle");
 let inputLineHeightSubtitle = document.getElementById("inputLineHeightSubtitle");
 let inputLineHeightBodyText = document.getElementById("inputLineHeightBodyText");
 
+let changeFontScaling = document.getElementById("changeFontScaling");
+
 // --- ANCHOR --- color
 
 let inputColorTitle = document.getElementById("inputColorTitle");
@@ -104,6 +106,7 @@ let savedItemFontType = sessionStorage.getItem("fontType");
 let savedItemCanvasPreset = sessionStorage.getItem("canvasPreset");
 let savedItemFontStyle = sessionStorage.getItem("fontStyle");
 let savedItemColorStyle = sessionStorage.getItem("colorStyle");
+// let savedItemChangeFontScaling = sessionStorage.getItem("changeFontScaling");
 
 
 // ────────────────────────────────────────────────────────────────────────────────
@@ -299,7 +302,7 @@ for (i = 0; i < allBlockButtonsSmall.length; i++) {
 // ─── ANCHOR MEDIA QUERIES ───────────────────────────────────────────────────────
 //
 
-let mediaQueryMin1200 = window.matchMedia("(min-width: 1200px)");
+
 let mediaQueryMax779 = window.matchMedia("(max-width: 779px)")
 
 //
@@ -317,7 +320,7 @@ canvas.style.width = inputWidth.value / 10 + "%";
 // ------ ON INPUT CHANGE
 
 
-/* FIXME Limite de los input hace que cuando un input tenga el
+/* DONE Limite de los input hace que cuando un input tenga el
 mínimo de varios dígitos no se pueda escribir el valor escogido.
 Por eso hace la cosa rara.
 DOS POSIBLES SOLUCIONES:
@@ -326,7 +329,6 @@ sea menor que el minVal se cambie automáticamente
 - Almacenar el valor que ponga el usuario y pasarlo al input cuando salga
  */
 
-// limitEdgesInputs(this);
 
 inputChange(inputEdit[0], canvas, null, "height", null, "%", selectCanvasSizePresets, true);
 inputChange(inputEdit[1], canvas, null, "width", null, "%", selectCanvasSizePresets, true);
@@ -643,6 +645,17 @@ rowQuantity.focusout = function() {
 // ─── ANCHOR TEXT ────────────────────────────────────────────────────────────────
 //
 
+// ANCHOR Text align expression
+
+let inputTextAlign = document.getElementById("inputTextAlign");
+
+
+
+canvas.style.textAlign = inputTextAlign.value;
+
+inputTextAlign.onchange = function() {
+    canvas.style.textAlign = inputTextAlign.value;
+}
 
 
 // ANCHOR --- Text content change
@@ -679,7 +692,7 @@ contentBodyText.style.fontWeight = bodyTextFontChangeWeight.value;
 
 titleFontChangeType.onchange = function() {
     contentTitle.style.fontFamily = this.value;
-    console.log(titleFontChangeType.value)
+
 }
 
 subtitleFontChangeType.onchange = function() {
@@ -708,11 +721,14 @@ for (i = 0; i < allFontChangeWeight.length; i++) {
 
 // ------ ON WINDOW LOAD
 
-contentTitle.style.fontSize = inputTitleSize.value + "pt";
-contentSubtitle.style.fontSize = inputSubitleSize.value + "pt";
 contentBodyText.style.fontSize = inputBodyTextSize.value + "pt";
+contentSubtitle.style.fontSize = inputSubitleSize.value + "pt";
+contentTitle.style.fontSize = inputTitleSize + "pt";
+
+
 
 // ------ ON INPUT CHANGE
+
 
 inputChange(inputEditTitle[0], contentTitle, null, "fontSize", null, "pt", "", false);
 inputChange(inputEditSubtitle[0], contentSubtitle, null, "fontSize", null, "pt", "", false);
@@ -723,8 +739,9 @@ inputChange(inputEditBodyText[0], contentBodyText, null, "fontSize", null, "pt",
 // ------ ON WINDOW LOAD
 
 contentTitle.style.lineHeight = inputLineHeightTitle.value + "pt";
-contentSubtitle.style.lineHeight = inputLineHeightSubtitle.value + "pt";
+contentSubtitle.style.lineHeight = contentTitle.style.lineHeight + "pt";
 contentBodyText.style.lineHeight = inputLineHeightBodyText.value + "pt";
+
 
 // ------ ON INPUT CHANGE
 
@@ -732,12 +749,53 @@ inputChange(inputEditTitle[1], contentTitle, null, "lineHeight", null, "pt", "",
 inputChange(inputEditSubtitle[1], contentSubtitle, null, "lineHeight", null, "pt", "", false);
 inputChange(inputEditBodyText[1], contentBodyText, null, "lineHeight", null, "pt", "", false);
 
-// inputEditTitle[1].oninput = function() {
-//     if (inputEditTitle[1].value < 2) {
-//         contentTitle.style.marginTop = "-" + inputEditTitle[1].value + "pt";
-//         console.log("a")
-//     }
-// }
+
+// ------ ON FONT SCALE
+
+let changeFontSizeScale = document.querySelectorAll("button.changeFontSizeScale");
+
+if (changeFontScaling.value == "0") {
+    for (i = 0; i < changeFontSizeScale.length; i++) {
+        changeFontSizeScale[i].disabled = true;
+    }
+}
+
+changeFontScaling.onchange = function() {
+    if (changeFontScaling.value !== "0") {
+        for (i = 0; i < changeFontSizeScale.length; i++) {
+            changeFontSizeScale[i].disabled = false;
+        }
+    } else {
+        for (i = 0; i < changeFontSizeScale.length; i++) {
+            changeFontSizeScale[i].disabled = true;
+        }
+    }
+}
+
+
+changeFontSizeScale[0].onclick = function() {
+    if (changeFontScaling.value !== "0") {
+        contentSubtitle.style.fontSize = inputTitleSize.value / (JSON.parse(changeFontScaling.value) * 2) + "pt";
+        contentSubtitle.style.lineHeight = inputTitleSize.value / (JSON.parse(changeFontScaling.value) * 2) + 2 + "pt";
+        contentBodyText.style.fontSize = inputTitleSize.value / (JSON.parse(changeFontScaling.value) * 3) + "pt";
+        contentBodyText.style.lineHeight = inputTitleSize.value / (JSON.parse(changeFontScaling.value) * 3) + "pt";
+    }
+}
+
+changeFontSizeScale[1].onclick = function() {
+    if (changeFontScaling.value !== "0") {
+        contentTitle.style.fontSize = inputSubitleSize.value * (JSON.parse(changeFontScaling.value) * 2) + "pt";
+        contentBodyText.style.fontSize = inputSubitleSize.value / (JSON.parse(changeFontScaling.value) * 2) + "pt";
+    }
+}
+
+changeFontSizeScale[2].onclick = function() {
+    if (changeFontScaling.value !== "0") {
+        contentTitle.style.fontSize = inputBodyTextSize.value * (JSON.parse(changeFontScaling.value) * 4) + "pt";
+        contentSubtitle.style.fontSize = inputBodyTextSize.value * (JSON.parse(changeFontScaling.value) * 2) + "pt";
+    }
+}
+
 
 //
 // ─── ANCHOR CHANGE COLOR ────────────────────────────────────────────────────────
@@ -776,14 +834,26 @@ let canvasTranditionalColors = ["#F9F0E6", "#F4F5F7", "#F5F5E0", "f1f1f1"];
 
 
 const colorizeCanvas = (textColor, canvasColor) => {
-    inputColorTitle.value = textColor;
-    canvasColor.value = canvasColor;
+    if (inputColorTitle.disabled == false) {
+        inputColorTitle.value = textColor;
+        contentTitle.style.color = textColor;
+    }
 
-    contentTitle.style.color = textColor;
-    contentSubtitle.style.color = textColor;
-    contentBodyText.style.color = textColor;
+    if (inputColorSubtitle.disabled == false) {
+        inputColorSubtitle.value = textColor;
+        contentSubtitle.style.color = textColor;
+    }
 
-    canvas.style.backgroundColor = canvasColor;
+    if (inputColorBodyText.disabled == false) {
+        inputColorBodyText.value = textColor;
+        contentBodyText.style.color = textColor;
+    }
+
+    if (inputColorCanvas.disabled == false) {
+        inputColorCanvas.value = canvasColor;
+        canvasColor.value = canvasColor;
+        canvas.style.backgroundColor = canvasColor;
+    }
 }
 
 let colorPalette = document.getElementById("colorPalette");
@@ -899,29 +969,6 @@ let changeDocStyle = document.getElementById("changeDocStyle");
 
 changeFontsType.value = parsedItemFontType;
 
-// if (savedItemFontType == '"all"') {
-//     for (i = 0; i < allFontChange.length; i++) {
-//         allFontChange[i].length = 0;
-//         for (o = 0; o < jsonData.items.length; o++) {
-//             optionFonts = document.createElement('option');
-//             optionFonts.text = jsonData.items[o].family;
-//             optionFonts.value = jsonData.items[o].family;
-//             allFontChange[i].add(optionFonts);
-//         }
-//     }
-// } else {
-//     for (i = 0; i < allFontChange.length; i++) {
-//         allFontChange[i].length = 0;
-//         for (o = 0; o < jsonData.items.length; o++) {
-//             if (jsonData.items[o].category == changeFontsType.value) {
-//                 optionFonts = document.createElement('option');
-//                 optionFonts.text = jsonData.items[o].family;
-//                 optionFonts.value = jsonData.items[o].family;
-//                 allFontChange[i].add(optionFonts);
-//             }
-//         };
-//     };
-// }
 
 
 $.getJSON(googleApi, function(data) {
@@ -933,17 +980,38 @@ $.getJSON(googleApi, function(data) {
                     optionFonts = document.createElement('option');
                     optionFonts.text = jsonData.items[o].family;
                     optionFonts.value = jsonData.items[o].family;
-                    // if (jsonData.items[o].family == titleFontChangeType.value) {
-                    //     for (u = 0; u < jsonData.items[o].variants.length; u++) {
-                    //         optionFonts02 = document.createElement('option');
-                    //         optionFonts02.text = jsonData.items[o].variants[u];
-                    //         optionFonts02.value = jsonData.items[o].variants[u];
-                    //         titleFontChangeWeight.add(optionFonts02);
-                    //     }
-                    // }
                     allFontChange[i].add(optionFonts);
                 }
 
+                // FIXME
+                allFontChange[i].onchange = function() {
+                    for (e = 0; e < allFontChangeWeight.length; e++) {
+
+                        for (o = 0; o < jsonData.items.length; o++) {
+                            if (jsonData.items[o].family == this.value) {
+                                for (u = 0; u < jsonData.items[o].variants.length; u++) {
+                                    optionFonts02 = document.createElement('option');
+                                    optionFonts02.text = jsonData.items[o].variants[u];
+                                    optionFonts02.value = jsonData.items[o].variants[u];
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            for (i = 0; i < allFontChangeWeight.length; i++) {
+                for (o = 0; o < jsonData.items.length; o++) {
+                    if (jsonData.items[o].family == allFontChange[0].value) {
+                        for (u = 0; u < jsonData.items[o].variants.length; u++) {
+                            optionFonts02 = document.createElement('option');
+                            optionFonts02.text = jsonData.items[o].variants[u];
+                            optionFonts02.value = jsonData.items[o].variants[u];
+                            allFontChangeWeight[i].add(optionFonts02);
+                        }
+                    }
+                }
             }
         } else {
             for (i = 0; i < allFontChange.length; i++) {
@@ -953,14 +1021,7 @@ $.getJSON(googleApi, function(data) {
                         optionFonts = document.createElement('option');
                         optionFonts.text = jsonData.items[o].family;
                         optionFonts.value = jsonData.items[o].family;
-                        // if (jsonData.items[o].family == titleFontChangeType.value) {
-                        //     for (u = 0; u < jsonData.items[o].variants.length; u++) {
-                        //         optionFonts02 = document.createElement('option');
-                        //         optionFonts02.text = jsonData.items[o].variants[u];
-                        //         optionFonts02.value = jsonData.items[o].variants[u];
-                        //         titleFontChangeWeight.add(optionFonts02);
-                        //     }
-                        // }
+
                         allFontChange[i].add(optionFonts);
                     }
                 }
@@ -968,6 +1029,14 @@ $.getJSON(googleApi, function(data) {
         }
 
 
+    }
+
+    // FIXME Dirty Code
+
+    if (savedItemFontStyle == '"modern"') {
+        changeDocStyle.value = "modernfonts";
+    } else if (savedItemFontStyle == '"traditional"') {
+        changeDocStyle.value = "traditionalfonts";
     }
 
     let dataBase;
@@ -1013,32 +1082,36 @@ $.getJSON(googleApi, function(data) {
         contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
     }
 
-    // FIXME Dirty Code
 
-    if (savedItemFontStyle == '"modern"') {
-        changeDocStyle.value = "modernfonts";
-    } else if (savedItemFontStyle == '"traditional"') {
-        changeDocStyle.value = "traditionalfonts";
-    }
 
 });
 
 // ANCHOR MENU
 // ANCHOR --- Show menu
+let mediaQueryMin1200 = window.matchMedia("(min-width: 1200px)");
+let mediaQueryMax1200 = window.matchMedia("(max-width: 1200px)");
 
-showMenu.onclick = function() {
-    if (menu.style.display == "block") {
-        showMenu.style.left = "20px";
-        showMenu.children[0].innerHTML = "east";
-        menu.style.display = "none";
-    } else {
-        showMenu.style.left = "320px";
-        showMenu.children[0].innerHTML = "west";
-        menu.style.display = "block";
+if (menu.style.display == "block") {
+    showMenu.style.left = "320px";
+}
+
+if (mediaQueryMax1200.matches) {
+
+    showMenu.onclick = function() {
+        if (menu.style.display == "block") {
+            showMenu.style.left = "20px";
+            showMenu.children[0].innerHTML = "east";
+            menu.style.display = "none";
+        } else {
+            showMenu.style.left = "320px";
+            showMenu.children[0].innerHTML = "west";
+            menu.style.display = "block";
+        }
     }
-    if (mediaQueryMin1200.matches) {
-        menu.style.display = "block";
-    }
+}
+
+if (mediaQueryMin1200.matches) {
+    menu.style.display = "block";
 }
 
 /*
@@ -1156,15 +1229,17 @@ document.body.onkeyup = function(e) {
                     break;
 
                 case '"rainbow"':
+
                     let randomColor = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
                     let randomColor02 = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6);
                     colorizeCanvas(randomColor, randomColor02);
+
 
                     break;
 
             }
 
-            colorPalette.value = inputColorTitle.value.toUpperCase();
+            colorPalette.value = inputColorTitle.value.toUpperCase()
 
 
 
@@ -1219,29 +1294,69 @@ document.body.onkeyup = function(e) {
             let rnd = Math.floor(Math.random() * 750) + 250;
             let rnd02 = Math.floor(Math.random() * 750) + 250;
             let rndmarg = Math.floor(Math.random() * 45) + 5;
-            let rndtitle = Math.floor(Math.random() * 20) + 40;
-            let rndsbtitle = Math.floor(Math.random() * 1) + 20;
+            let rndTitle = Math.floor(Math.random() * 20) + 40;
+            let rndSubtitle = Math.floor(Math.random() * 1) + 20;
+            let rndBodyText = Math.floor(Math.random() * 24) + 8;
 
             if (inputMargin.disabled == false) {
                 inputMargin.value = rndmarg;
                 canvas.style.padding = inputMargin.value + "px";
                 guides.style.padding = inputMargin.value + "px";
-            } else {}
-
-
+            }
             if (inputHeight.disabled == false) {
                 inputHeight.value = rnd;
                 canvas.style.height = rnd / 10 + "%";
-            } else {}
+            }
             if (inputWidth.disabled == false) {
                 inputWidth.value = rnd02;
                 canvas.style.width = rnd02 / 10 + "%";
-            } else {}
+            }
 
-            contentTitle.style.fontSize = rndtitle + "pt";
-            contentSubtitle.style.fontSize = rndsbtitle + "pt";
+            switch (changeFontScaling.value) {
+                case "0":
+                    if (inputTitleSize.disabled == false) {
+                        contentTitle.style.fontSize = rndTitle + "pt";
+                        inputTitleSize.value = rndTitle;
+                    }
+
+                    if (inputSubitleSize.disabled == false) {
+                        contentSubtitle.style.fontSize = rndSubtitle + "pt";
+                        inputSubitleSize.value = rndSubtitle;
+                    }
+
+                    if (inputBodyTextSize.disabled == false) {
+                        contentBodyText.style.fontSize = rndBodyText + "pt";
+                        inputBodyTextSize.value = rndBodyText;
+                    }
 
 
+
+
+                    break;
+                case '1.25':
+                    contentBodyText.style.fontSize = rndBodyText + "pt";
+                    contentBodyText.style.lineHeight = rndBodyText + 5 + "pt";
+                    inputBodyTextSize.value = rndBodyText;
+                    inputLineHeightBodyText.value = rndBodyText;
+
+                    contentSubtitle.style.fontSize = rndBodyText * 1.25 + "pt";
+                    inputSubitleSize.value = rndBodyText * 1.25;
+                    contentSubtitle.style.lineHeight = rndBodyText * 1.25 + 10 + "pt";
+                    inputLineHeightSubtitle.value = rndBodyText * 1.25;
+
+                    contentTitle.style.fontSize = rndBodyText * 1.25 * 2 + "pt";
+                    inputTitleSize.value = rndBodyText * 1.25 * 2;
+                    inputLineHeightTitle.value = rndBodyText * 1.25 * 2;
+                    contentTitle.style.lineHeight = rndBodyText * 1.25 * 2 + "pt";
+                    break;
+                case '1.2':
+                    contentBodyText.style.fontSize = rndBodyText + "pt";
+                    inputBodyTextSize.value = rndBodyText;
+                    contentSubtitle.style.fontSize = rndBodyText * 1.2 + "pt";
+                    contentTitle.style.fontSize = rndBodyText * 1.2 * 2 + "pt";
+                    console.log(rndBodyText)
+                    break;
+            }
         }
     }
 }
