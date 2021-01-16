@@ -39,6 +39,7 @@ let selectCanvasSizePresets = document.getElementById("canvasSizePresets");
 let blockSelectCanvasSizePresets = document.getElementById("btnCanvasSizePreset");
 let changeCanvasOrientation = document.getElementById("switch");
 let blockCanvasProportion = document.getElementById("btnBlockProportion");
+let canvasPositioning = document.getElementById("canvasPositioning");
 
 // --- ANCHOR --- canvas layout
 
@@ -74,6 +75,7 @@ let bodyTextFontChangeWeight = document.getElementById("bodyTextFontChangeWeight
 
 let allFontChange = document.querySelectorAll("select.fontChange");
 let allFontChangeWeight = document.querySelectorAll("select.fontChangeWeight");
+let allFontChangeStyle = document.querySelectorAll("select.fontChangeStyle");
 
 // --- ANCHOR --- font size
 
@@ -684,9 +686,9 @@ inputBodyText.oninput = function() {
 
 // ------ ON WINDOW LOAD
 
-contentTitle.style.fontWeight = titleFontChangeWeight.value;
-contentSubtitle.style.fontWeight = subTitleFontChangeWeight.value;
-contentBodyText.style.fontWeight = bodyTextFontChangeWeight.value;
+// contentTitle.style.fontWeight = titleFontChangeWeight.value;
+// contentSubtitle.style.fontWeight = subTitleFontChangeWeight.value;
+// contentBodyText.style.fontWeight = bodyTextFontChangeWeight.value;
 
 // ------ ON INPUT CHANGE
 
@@ -704,17 +706,28 @@ bodyTextFontChangeType.oninput = function() {
 
 // ANCHOR --- change font weight
 
-for (i = 0; i < allFontChangeWeight.length; i++) {
-    allFontChangeWeight[i].onchange = function() {
-        if ($(this).attr("class").split(' ')[1] == "title") {
-            contentTitle.style.fontWeight = this.value;
-        } else if ($(this).attr("class").split(' ')[1] == "subtitle") {
-            contentSubtitle.style.fontWeight = this.value;
-        } else if ($(this).attr("class").split(' ')[1] == "bodyText") {
-            contentBodyText.style.fontWeight = this.value;
-        }
-    }
+
+allFontChangeWeight[0].onchange = function() {
+    contentTitle.style.fontWeight = allFontChangeWeight[0].value;
 }
+allFontChangeWeight[1].onchange = function() {
+    contentSubtitle.style.fontWeight = allFontChangeWeight[1].value;
+}
+allFontChangeWeight[2].onchange = function() {
+    contentBodyText.style.fontWeight = allFontChangeWeight[2].value;
+}
+
+allFontChangeStyle[0].onchange = function() {
+    contentTitle.style.fontStyle = allFontChangeStyle[0].value;
+}
+allFontChangeStyle[1].onchange = function() {
+    contentSubtitle.style.fontStyle = allFontChangeStyle[1].value;
+}
+allFontChangeStyle[2].onchange = function() {
+    contentBodyText.style.fontStyle = allFontChangeStyle[2].value;
+}
+
+
 
 // ANCHOR --- Change font size
 
@@ -970,11 +983,11 @@ if (savedItemFontType == '"all"') {
 
 let changeDocStyle = document.getElementById("changeDocStyle");
 
-
+let downloadLink = "";
 
 changeFontsType.value = parsedItemFontType;
 
-
+let titleFontChangeWeight01 = document.getElementById("titleFontChangeWeight01");
 
 $.getJSON(googleApi, function(data) {
     const loopFontSelect = (jsonData, type) => {
@@ -985,39 +998,39 @@ $.getJSON(googleApi, function(data) {
                     optionFonts = document.createElement('option');
                     optionFonts.text = jsonData.items[o].family;
                     optionFonts.value = jsonData.items[o].family;
+
                     allFontChange[i].add(optionFonts);
                 }
 
-                // FIXME
-                allFontChange[i].onchange = function() {
-                    for (e = 0; e < allFontChangeWeight.length; e++) {
+                // // FIXME
+                // allFontChange[1].onchange = function() {
+                //     titleFontChangeWeight01.length = 0;
+                //     for (o = 0; o < jsonData.items.length; o++) {
+                //         if (jsonData.items[o].family == allFontChange[1].value) {
+                //             for (u = 0; u < jsonData.items[o].variants.length; u++) {
+                //                 optionFonts02 = document.createElement('option');
+                //                 optionFonts02.text = jsonData.items[o].variants[u];
+                //                 optionFonts02.value = jsonData.items[o].variants[u];
+                //                 titleFontChangeWeight01.add(optionFonts02);
+                //             }
+                //         }
 
-                        for (o = 0; o < jsonData.items.length; o++) {
-                            if (jsonData.items[o].family == this.value) {
-                                for (u = 0; u < jsonData.items[o].variants.length; u++) {
-                                    optionFonts02 = document.createElement('option');
-                                    optionFonts02.text = jsonData.items[o].variants[u];
-                                    optionFonts02.value = jsonData.items[o].variants[u];
-
-                                }
-                            }
-                        }
-                    }
-                }
+                //     }
+                // }
 
             }
-            for (i = 0; i < allFontChangeWeight.length; i++) {
-                for (o = 0; o < jsonData.items.length; o++) {
-                    if (jsonData.items[o].family == allFontChange[0].value) {
-                        for (u = 0; u < jsonData.items[o].variants.length; u++) {
-                            optionFonts02 = document.createElement('option');
-                            optionFonts02.text = jsonData.items[o].variants[u];
-                            optionFonts02.value = jsonData.items[o].variants[u];
-                            allFontChangeWeight[i].add(optionFonts02);
-                        }
-                    }
-                }
-            }
+            // for (i = 0; i < allFontChangeWeight.length; i++) {
+            //     for (o = 0; o < jsonData.items.length; o++) {
+            //         if (jsonData.items[o].family == allFontChange[0].value) {
+            //             for (u = 0; u < jsonData.items[o].variants.length; u++) {
+            //                 optionFonts02 = document.createElement('option');
+            //                 optionFonts02.text = jsonData.items[o].variants[u];
+            //                 optionFonts02.value = jsonData.items[o].variants[u];
+            //                 allFontChangeWeight[i].add(optionFonts02);
+            //             }
+            //         }
+            //     }
+            // }
         } else {
             for (i = 0; i < allFontChange.length; i++) {
                 allFontChange[i].length = 0;
@@ -1064,6 +1077,17 @@ $.getJSON(googleApi, function(data) {
         switch (changeDocStyle.value) {
             case "data":
                 dataBase = data;
+                changeFontsType.length = 0;
+                optionFonts = `
+                <option value="all">All</option>
+                            <option value="serif">Serif</option>
+                            <option value="sans-serif">Sans Serif</option>
+                            <option value="display">Display</option>
+                            <option value="handwriting">Handwriting</option>
+                            <option value="monospace">Monospace</option>
+                `;
+
+                changeFontsType.innerHTML = optionFonts;
                 break;
             case "modernfonts":
                 dataBase = modernFonts;
@@ -1110,6 +1134,8 @@ $.getJSON(googleApi, function(data) {
 
 
 });
+
+
 
 // ANCHOR MENU
 // ANCHOR --- Show menu
@@ -1451,285 +1477,129 @@ for (i = 0; i < allWheelableSelects.length; i++) {
 // TODO DOWNLOAD PDF
 
 
-// $('.downloadButton').click(function() {
+
+
+$('#downloadButton').click(function() {
+
+    // html2canvas($('#canvasContainer'), {
+    //     onrendered: function(canvas) {
+    //         var a = document.createElement('a');
+    //         // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+    //         a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    //         a.download = 'astp_canvas.jpg';
+    //         a.click();
+    //     }
+    // });
+    let w = 1000;
+    let h = 1000;
+    let div = document.querySelector('#canvasContainer');
+    let canvas = document.createElement('canvas');
+    canvas.style.position = "absolute";
+    canvas.left = 300 + "px";
+    canvas.width = w * 3;
+    canvas.height = h * 2;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    var context = canvas.getContext('2d');
+    context.scale(2, 2);
+
+
+    html2canvas(div, {
+        canvas: canvas,
+        onrendered: function(canvas) {
+            saveAs(canvas.toDataURL(), 'canvas.png');
+        }
+    });
+
+
+
+    let doc = new jsPDF('p', 'mm', [297, 210]);
+
+
+
+    doc.addFont('Helvetica');
+
+
+    let textPosition = 24;
+
+    let titleH1 = function(text) {
+        doc.setFontSize(20);
+        doc.setTextColor(255, 0, 0);
+        doc.setFont('Helvetica');
+        doc.text(text, 24, textPosition, {
+            'width': 170,
+        });
+        textPosition += 10;
+    }
+    doc.addFont('Helvetica');
+
+    let dataText = function(i, e, f) {
+        doc.setFontSize(16);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont('Helvetica');
+        doc.fromHTML("<b>" + i + "</b>" + " " + $(e).val() + ", " + $(f).text(), 24, textPosition, {
+            'width': 170,
+        });
+        textPosition += 5;
+    }
+
+    titleH1("Fonts used:");
+
+    dataText("Title:", "#titleFontChange", "#titleFontChangeWeight01 option:selected")
+    dataText("Download link:", "#titleFontChange")
+    dataText("Subtitle:", "#subtitleFontChange", "#titleFontChangeWeight02 option:selected")
+    dataText("Body Text:", "#bodyTextFontChange", "#titleFontChangeWeight03 option:selected")
+
+    dataText("Title Color:", "#inputColorTitle")
+    dataText("Subtitle Color:", "#inputColorSubtitle")
+    dataText("Body Text Color:", "#inputColorBodyText")
+    dataText("Canvas Color:", "#inputColorCanvas")
+
+    // File Name
+
+    let fileName = 'astp_data' + '.pdf';
+
+    doc.save(fileName);
+});
+
+
+function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+    } else {
+        window.open(uri);
+    }
+}
+
+
+// $('#downloadButton').click(function() {
+
+
+
+//     // let titleH2 = function(text, tp) {
+//     //     doc.setFontSize(14);
+//     //     doc.setTextColor(0, 0, 0);
+//     //     doc.setFont('Helvetica');
+//     //     doc.text(text, 24, tp);
+//     //     textPosition += 14;
+//     // }
+
+//     // titleH2("Title:", textPosition);
 
 //     /*
 //     https://github.com/MrRio/jsPDF
 //     */
 
-//     let doc = new jsPDF('p', 'pt', 'letter');
-//     source = canvas;
 
-//     specialElementHandlers = {
-//         '#bypassme': function(element, renderer) {
-//             return true
-//         }
-//     };
-//     margins = {
-//         top: 80,
-//         bottom: 60,
-//         left: 40,
-//         width: 522
-//     };
-
-//     doc.fromHTML(
-//         source,
-//         margins.left, // x coord
-//         margins.top, { // y coord
-//             'width': margins.width,
-//             'elementHandlers': specialElementHandlers
-//         },
-
-//         function(dispose) {
-//             doc.save('Prueba.pdf');
-//         }, margins
-//     );
 // });
-
-
-
-
-// ────────────────────────────────────────────────────────────────────────────────
-// ────────────────────────────────────────────────────────────────────────────────
-// ────────────────────────────────────────────────────────────────────────────────
-
-
-// ANCHOR *** DEVELOPMENT ***
-/*
-
-for (i = 0; i < allFontChange.length; i++) {
-    allFontChange[i].onchange = function() {
-        if ($(this).attr("class").split(' ')[1] == "title") {
-            contentTitle.style.fontFamily = this.value;
-        } else if ($(this).attr("class").split(' ')[1] == "subtitle") {
-            contentSubtitle.style.fontFamily = this.value;
-        } else if ($(this).attr("class").split(' ')[1] == "bodyText") {
-            contentBodyText.style.fontFamily = this.value;
-        }
-    }
-}
-
-    $(document).ready(function() { });
-
-    window.onresize = function maneja() {
-        if (mediaQueryA.matches) {
-            canvasContainer.style.height = canvasContainer.offsetWidth + "px";
-        } else {
-            canvasContainer.style.width = canvasContainer.offsetHeight + "px";
-        }
-    };
-
-    let mediaQueryA = window.matchMedia("(max-width: 885px)");
-
-    mediaQueryA.addListener(maneja);
-
-
-
-
-    RULER IDEA TO NORMALIZE NUMBERS
-
-    vvv This goes in the html vvv 
-    <div id="anchoDinA4" class="anchoDinA4"></div>
-
-
-    let rulerAnchoDina4 = document.getElementById("anchoDinA4");
-
-    const normalizarMilimetros = rulerAnchoDina4.offsetWidth / (canvas.offsetWidth - canvas.marginLeft * 2);
-
-    console.log(canvas.style.marginRight);
-    console.log(rulerAnchoDina4.offsetWidth);
-    console.log(canvas.clientWidth);
-    console.log(normalizarMilimetros);
-
-    let anchoactual = rulerAnchoDina4.offsetWidth;
-
- rulerAnchoDina4.style.width = anchoactual / normalizarMilimetros + "px"
-
-
-
- // --- Block Height or Width separately
-
-// ----- Height
-
-blockInputTitle.onclick = function() {
-    blockAnything(inputTitleSize)
-};
-
-// blockInputSubtitle.onclick = function() {
-//     blockAnything(inputTitleSize)
-// };
-
-// blockInputTitle.onclick = function() {
-//     blockAnything(inputTitleSize)
-// };
-
-
-// ----- Height
-
-
-for (var i = 0; i < allBlockButtons.length; i++) {
-
-    allBlockButtons[i].addEventListener('click', function() {
-        // blockAnything(this.value);
-        console.log(this.className.substring(11, 16));
-    });
-}
-
-// ----- Width
-
-// blockWidth.onclick = function() {
-//     blockAnything(inputWidth);
-// }
-
-
-
-// const blockAnything = (whatToBlock) => {
-//     if (whatToBlock.disabled == true) {
-//         whatToBlock.disabled = false;
-//     } else {
-//         whatToBlock.disabled = true;
-//     }
-// }
-
-
-
-// ---  Populate select with JSON Data from typefaces.js
-
-// for (i = 0; i < allFontChange.length; i++) {
-//     allFontChange[i].length = 0;
-//     if (savedItemFontType == '"any"') {
-//         changeFontsType.selectedIndex = 0;
-//         for (e = 0; e < fonts.length; e++) {
-//             optGroupFonts = document.createElement('optgroup');
-//             optGroupFonts.label = fonts[e].label;
-//             allFontChange[i].add(optGroupFonts);
-//             for (o = 0; o < fonts[e].content.length; o++) {
-//                 optionFonts = document.createElement('option');
-//                 optionFonts.text = fonts[e].content[o].name;
-//                 optionFonts.value = fonts[e].content[o].value;
-//                 allFontChange[i].add(optionFonts);
-//             }
-//         };
-
-//     } else {
-//         changeFontsType.selectedIndex = parsedItemFontType + 1;
-//         optGroupFonts = document.createElement('optgroup');
-//         optGroupFonts.label = fonts[parsedItemFontType].label;
-//         allFontChange[i].add(optGroupFonts);
-//         for (o = 0; o < fonts[parsedItemFontType].content.length; o++) {
-//             optionFonts = document.createElement('option');
-//             optionFonts.text = fonts[parsedItemFontType].content[o].name;
-//             optionFonts.value = fonts[parsedItemFontType].content[o].value;
-//             allFontChange[i].add(optionFonts);
-//         }
-//     }
-// }
-
-
-
-
-// AN IDEA TO POPULATE SELECT
-
-
-    // if (savedItemFontType == '"any"') {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "serif") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         };
-    //     };
-    // } else if (savedItemFontType == '"0"') {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "serif") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         }
-    //     }
-    // } else if (savedItemFontType == '"1"') {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "sans-serif") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         }
-    //     };
-    // } else if (savedItemFontType == '"2"') {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "display") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         }
-    //     };
-    // } else if (savedItemFontType == '"3"') {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "handwriting") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         }
-    //     };
-    // } else {
-    //     for (i = 0; i < allFontChange.length; i++) {
-    //         allFontChange[i].length = 0;
-    //         for (o = 0; o < data.items.length; o++) {
-    //             if (data.items[o].category == "monospace") {
-    //                 optionFonts = document.createElement('option');
-    //                 optionFonts.text = data.items[o].family;
-    //                 optionFonts.value = data.items[o].family;
-    //                 allFontChange[i].add(optionFonts);
-    //                 googleFontsLenght += 1;
-    //             }
-    //         }
-    //     };
-    // }
-
-    // INPUT OLD HEIGHT
-
-    // inputHeight.oninput = function() {
-//     limitMaxVal(this, canvas.style, 'height');
-//     selectCanvasSizePresets.value = "personalized";
-// };
-
-// inputHeight.focusout = function() {
-//     limitMinVal(this);
-// };
-
-// inputWidth.oninput = function() {
-//     limitMaxVal(this, canvas.style, 'width');
-//     selectCanvasSizePresets.value = "personalized";
-// };
-
-// inputWidth.focusout = function() {
-//     limitMinVal(this);
-// };
-
-
- */

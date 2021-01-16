@@ -20,6 +20,7 @@
     <!-- Link to Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova">
     <link href="https://pagecdn.io/lib/easyfonts/fonts.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -50,8 +51,8 @@
 
                     <!-- ANCHOR TEXT INPUTS -->
                     <div class="comp">
-                        <input id="inputTitle" type="text" placeholder="Title">
-                        <input id="inputSubtitle" type="text" placeholder="Subtitle">
+                        <input id="inputTitle" type="text" placeholder="YHLQMDLG">
+                        <input id="inputSubtitle" type="text" placeholder="Bad Bunny">
                         <textarea id="inputBodyText" placeholder="Yo hago lo que me dé la gana. Yo fui quien pagó mi cubana. Yo ni sé cómo tú te llama'. Chao, hablamo' mañana"></textarea>
                     </div>
                     <!-- ANCHOR CATEGORIES-->
@@ -106,7 +107,7 @@
                             <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
                             <a class="btn labelFullWidth" data-toggle="collapse" href="#toggleTitle" role="button" aria-expanded="false" aria-controls="toggleTitle">Title <i class="material-icons md-14">keyboard_arrow_down</i></a>
                         </div>
-                        <div id="toggleTitle" class="collapse show">
+                        <div id="toggleTitle" class="collapse">
                             <div class="compForm">
                                 <div class="compFormSelfBlock">
                                     <label>Font:</label>
@@ -115,8 +116,28 @@
                                 </div>
 
                                 <div class="compFormSelfBlock">
+                                    <label>Weight:</label>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeWeight01" class="blockeable title fontChangeWeight">
+                                        <option value="100">Extralight</option>
+                                        <option value="200">Thin</option>
+                                        <option value="300">Light</option>
+                                        <option value="400">Normal</option>
+                                        <option value="500">Medium</option>
+                                        <option value="600">Semi-bold</option>
+                                        <option value="700">Bold</option>
+                                        <option value="800">Black</option>
+                                        <option value="900">Extrablack</option>
+                                    </select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
                                     <label>Style:</label>
-                                    <select name="titleFontChangeWeight" id="titleFontChangeWeight" class="blockeable title fontChangeWeight"></select>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeStyle" class="blockeable title fontChangeStyle">
+                                        <option value="normal">Normal</option>
+                                        <option value="italic">Italic</option>
+                                        <option value="oblique">Oblique</option>
+                                    </select>
                                     <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                 </div>
 
@@ -160,8 +181,28 @@
                                 </div>
 
                                 <div class="compFormSelfBlock">
+                                    <label>Weight:</label>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeWeight02" class="blockeable title fontChangeWeight">
+                                        <option value="100">Extralight</option>
+                                        <option value="200">Thin</option>
+                                        <option value="300">Light</option>
+                                        <option value="400">Normal</option>
+                                        <option value="500">Medium</option>
+                                        <option value="600">Semi-bold</option>
+                                        <option value="700">Bold</option>
+                                        <option value="800">Black</option>
+                                        <option value="900">Extrablack</option>
+                                    </select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
                                     <label>Style:</label>
-                                    <select name="subTitleFontChangeWeight" id="subTitleFontChangeWeight" class="blockeable title fontChangeWeight"></select>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeStyle" class="blockeable title fontChangeStyle">
+                                        <option value="normal">Normal</option>
+                                        <option value="italic">Italic</option>
+                                        <option value="oblique">Oblique</option>
+                                    </select>
                                     <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                 </div>
                                 <div class="compFormSelfBlock">
@@ -199,8 +240,28 @@
                                     <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                 </div>
                                 <div class="compFormSelfBlock">
+                                    <label>Weight:</label>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeWeight03" class="blockeable title fontChangeWeight">
+                                            <option value="100">Extralight</option>
+                                            <option value="200">Thin</option>
+                                            <option value="300">Light</option>
+                                            <option value="400">Normal</option>
+                                            <option value="500">Medium</option>
+                                            <option value="600">Semi-bold</option>
+                                            <option value="700">Bold</option>
+                                            <option value="800">Black</option>
+                                            <option value="900">Extrablack</option>
+                                    </select>
+                                    <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
+                                </div>
+
+                                <div class="compFormSelfBlock">
                                     <label>Style:</label>
-                                    <select name="bodyTextFontChangeWeight" id="bodyTextFontChangeWeight" class="blockeable bodyText fontChangeWeight"></select>
+                                    <select name="titleFontChangeWeight" id="titleFontChangeStyle" class="blockeable title fontChangeStyle">
+                                        <option value="normal">Normal</option>
+                                        <option value="italic">Italic</option>
+                                        <option value="oblique">Oblique</option>
+                                    </select>
                                     <button class="blockButtonSmall" type='button'><i class="material-icons md-14">lock</i></button>
                                 </div>
                                 <div class="compFormSelfBlock">
@@ -231,7 +292,7 @@
                                 <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
                                 <a class="btn labelFullWidth" data-toggle="collapse" href="#toggleCanvas" role="button" aria-expanded="false" aria-controls="toggleCanvas">Canvas<i class="material-icons md-14">keyboard_arrow_down</i></a>
                             </div>
-                            <div id="toggleCanvas" class="collapse show">
+                            <div id="toggleCanvas" class="collapse">
                                 <div class="compForm">
                                     <!-- ANCHOR SIZE PRESETS-->
                                     <div class="compFormSelfBlock">
@@ -302,7 +363,7 @@
                                 <button class="blockButton" type='button'><i class="material-icons md-14">lock</i></button>
                                 <a class="btn labelFullWidth" data-toggle="collapse" href="#toggleGuides" role="button" aria-expanded="false" aria-controls="toggleGuides">Guides<i class="material-icons md-14">keyboard_arrow_down</i></a>
                             </div>
-                            <div id="toggleGuides" class="collapse show">
+                            <div id="toggleGuides" class="collapse">
                                 <div class="compForm">
 
                                     <button id="showGuides" type='button' class="labelFullWidth"><i id="showGuidesIcon" class="material-icons md-14">visibility_off</i></button>
@@ -341,6 +402,7 @@
             <!-- ANCHOR CANVAS-->
 
             <div id="canvasPositioning">
+
                 <div id="canvasContainer">
                     <div id="canvas">
                         <h1 id="contentTitle">Title</h1>
@@ -360,11 +422,13 @@
     <!-- <div class="info">  </div> -->
 
     <script src="./assets/lib/jquery.min.js"></script>
+    <script src="./assets/lib/html2canvas.min.js"></script>
+    <script src="./assets/lib/html2pdf.bundle.min.js"></script>
     <script src="./assets/lib/jspdf.min.js"></script>
     <script src="./app/modules/personalData.js"></script>
     <script src="./app/modules/typefaces.js"></script>
     <script src="./app/modules/colors.js"></script>
-    <!-- <script src="./assets/lib/html2canvas.min.js"></script> -->
+
     <!-- <script src="./app/modules/googleapi.js"></script> -->
     <script src="./app/main.js"></script>
 

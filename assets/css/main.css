@@ -3731,17 +3731,39 @@ span {
 
 #canvasPositioning {
   overflow: hidden;
-  height: 100%;
+  height: 100vh;
   padding-top: 80px;
 }
 
 #canvasContainer {
+  background-color: #ddd;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   height: 90%;
   margin: 0 auto;
+}
+
+#contentTitle {
+  white-space: pre-wrap;
+}
+
+#contentSubtitle {
+  white-space: pre-wrap;
+}
+
+#contentBodyText {
+  white-space: pre-wrap;
+}
+
+#pdfContent {
+  position: absolute;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
 }
 
 #canvas {
