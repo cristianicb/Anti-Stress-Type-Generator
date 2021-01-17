@@ -3791,11 +3791,6 @@ canvas {
   margin: 0;
 }
 
-.info {
-  height: 100vh;
-  background-color: #ddd;
-}
-
 .formLabel {
   border: transparent;
 }
@@ -4082,4 +4077,70 @@ Reglas
     height: 1cm;
 }
 */
+.info {
+  height: auto;
+  background-color: #ccc;
+  padding: 200px;
+}
+
+.info h2 {
+  margin-bottom: 0.3em;
+}
+
+.info p {
+  margin-bottom: 1.5em;
+}
+
+.info xmp {
+  padding: 1em;
+  background-color: #333;
+  color: #ddd;
+}
+
+.info xmp .inline {
+  background-color: none;
+}
+
+.info .colorPaletteContainer {
+  margin-top: 2em;
+  height: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.info .colorPaletteContainer .colorPalette {
+  background-color: #999999;
+  width: 100px;
+  padding: 1em;
+}
+
+.info .colorPaletteContainerInfo {
+  height: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.info .colorPaletteContainerInfo .colorPaletteInfo {
+  text-align: center;
+  width: 100px;
+  padding: 1em;
+}
+
+#scroll_down {
+  position: absolute;
+  font-size: 4em;
+  bottom: 0;
+  left: 50vw;
+  margin-left: -15px;
+}
 /*# sourceMappingURL=main.css.map */

@@ -93,6 +93,29 @@ let inputLineHeightBodyText = document.getElementById("inputLineHeightBodyText")
 
 let changeFontScaling = document.getElementById("changeFontScaling");
 
+//
+
+let titleFontName = document.getElementById("titleFontName");
+let subtitleFontName = document.getElementById("subtitleFontName");
+let bodyTextFontName = document.getElementById("bodyTextFontName");
+
+let googleFontsLink01 = document.getElementById("googleFontsLink01");
+let googleFontsLink02 = document.getElementById("googleFontsLink02");
+let googleFontsLink03 = document.getElementById("googleFontsLink03");
+
+let embed01 = document.getElementById("embed01");
+let embed02 = document.getElementById("embed02");
+let embed03 = document.getElementById("embed03");
+let embed04 = document.getElementById("embed04");
+
+let infoColorPalette = document.querySelectorAll("div.colorPalette");
+let infoColorPaletteInfo = document.querySelectorAll("div.colorPaletteInfo");
+
+
+
+
+
+
 // --- ANCHOR --- color
 
 let inputColorTitle = document.getElementById("inputColorTitle");
@@ -911,8 +934,22 @@ colorPalette.onchange = function() {
             break;
     }
 
+
 }
 
+let changeInfoColorPalette = function() {
+    infoColorPalette[0].style.backgroundColor = inputColorTitle.value;
+    infoColorPalette[1].style.backgroundColor = inputColorSubtitle.value;
+    infoColorPalette[2].style.backgroundColor = inputColorBodyText.value;
+    infoColorPalette[3].style.backgroundColor = inputColorCanvas.value;
+
+    infoColorPaletteInfo[0].innerHTML = inputColorTitle.value;
+    infoColorPaletteInfo[1].innerHTML = inputColorSubtitle.value;
+    infoColorPaletteInfo[2].innerHTML = inputColorBodyText.value;
+    infoColorPaletteInfo[3].innerHTML = inputColorCanvas.value;
+}
+
+changeInfoColorPalette()
 
 // contentTitle.style.color = textModernColors[1];
 // canvas.style.backgroundColor = canvasModernColors[1];
@@ -926,20 +963,24 @@ colorPalette.onchange = function() {
 
 inputColorTitle.oninput = function() {
     contentTitle.style.color = this.value;
+    changeInfoColorPalette()
 }
 
 inputColorSubtitle.oninput = function() {
     contentSubtitle.style.color = this.value;
+    changeInfoColorPalette()
 }
 
 inputColorBodyText.oninput = function() {
     contentBodyText.style.color = this.value;
+    changeInfoColorPalette()
 }
 
 // ------ Canvas color
 
 inputColorCanvas.oninput = function() {
     canvas.style.backgroundColor = this.value;
+    changeInfoColorPalette()
 }
 
 // ------ Guides color
@@ -955,7 +996,57 @@ inputColorGuides.oninput = function() {
 }
 
 
+let infoPanel = function() {
 
+
+    let changeEmbedLink = function() {
+
+        embed01.innerHTML = `<link href="https://fonts.googleapis.com/css?family=${titleFontChangeType.value.split(' ').join('+')}|${subtitleFontChangeType.value.split(' ').join('+')}|${bodyTextFontChangeType.value.split(' ').join('+')}" rel="stylesheet">`
+    }
+
+    changeEmbedLink();
+
+    let changeEmbed02 = function() {
+        embed02.innerHTML = "h1{ font-family: " + titleFontChangeType.value + ";" + "}"
+        embed03.innerHTML = "h2{ font-family: " + subtitleFontChangeType.value + ";" + "}"
+        embed04.innerHTML = "p{ font-family: " + bodyTextFontChangeType.value + ";" + "}"
+    }
+
+    changeEmbed02();
+
+    titleFontName.innerHTML = "Title H1 - " + titleFontChangeType.value + ", " + inputTitleSize.value + "pt";
+
+    titleFontChangeType.oninput = function() {
+        titleFontName.innerHTML = "Title H1 - " + this.value + ", " + inputTitleSize.value + "pt";
+        googleFontsLink01.innerHTML = `<p><a href="https://fonts.google.com/specimen/${titleFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+        changeEmbedLink()
+        changeEmbed02()
+    }
+
+    subtitleFontName.innerHTML = "Subtitle H2 - " + subtitleFontChangeType.value + ", " + inputSubitleSize.value + "pt";
+
+    subtitleFontChangeType.oninput = function() {
+        subtitleFontName.innerHTML = "Subtitle H2 - " + this.value + ", " + inputSubitleSize.value + "pt";
+        googleFontsLink02.innerHTML = `<p><a href="https://fonts.google.com/specimen/${subtitleFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+        changeEmbedLink()
+        changeEmbed02()
+    }
+
+
+    bodyTextFontName.innerHTML = "Body Text - " + bodyTextFontChangeType.value + ", " + inputBodyTextSize.value + "pt";
+
+    bodyTextFontChangeType.oninput = function() {
+        bodyTextFontName.innerHTML = "Body Text - " + this.value + ", " + inputBodyTextSize.value + "pt";
+        googleFontsLink03.innerHTML = `<p><a href="https://fonts.google.com/specimen/${bodyTextFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+        changeEmbedLink()
+        changeEmbed02()
+    }
+
+    googleFontsLink01.innerHTML = `<p><a href="https://fonts.google.com/specimen/${titleFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+    googleFontsLink02.innerHTML = `<p><a href="https://fonts.google.com/specimen/${subtitleFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+    googleFontsLink03.innerHTML = `<p><a href="https://fonts.google.com/specimen/${bodyTextFontChangeType.value.split(' ').join('+')}" target=“_blank”>See on Google Fonts</a></p>`;
+
+}
 
 
 
@@ -1131,9 +1222,14 @@ $.getJSON(googleApi, function(data) {
         contentBodyText.style.fontFamily = bodyTextFontChangeType.value;
     }
 
+    // TODO Change Info Panel
 
+
+    infoPanel()
 
 });
+
+
 
 
 
@@ -1231,6 +1327,8 @@ const generatorStuff = function() {
             allFontChange[i].selectedIndex = Math.floor(Math.random() * allFontChange[i].length - 1) + 1;
         }
     }
+
+    infoPanel()
 
     switch (savedItemColorStyle) {
         case '"bw"':
@@ -1427,6 +1525,7 @@ document.body.onkeyup = function(e) {
     if ($('textarea:focus').length == 0 && $('input:focus').length == 0) {
         if (e.keyCode == 32) {
             generatorStuff();
+            changeInfoColorPalette()
         }
     }
 }

@@ -354,11 +354,6 @@ canvas {
     }
 }
 
-.info {
-    height: 100vh;
-    background-color: #ddd;
-}
-
 .formLabel {
     border: transparent;
 }
@@ -625,3 +620,55 @@ Reglas
     height: 1cm;
 }
 */
+
+// ANCHOR EMBED * NEW STUFF
+.info {
+    height: auto;
+    background-color: #ccc;
+    padding: 200px;
+    h2 {
+        margin-bottom: 0.3em;
+    }
+    p {
+        margin-bottom: 1.5em;
+    }
+    xmp {
+        padding: 1em;
+        background-color: #333;
+        color: #ddd;
+        .inline {
+            background-color: none;
+        }
+    }
+    .colorPaletteContainer {
+        margin-top: 2em;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .colorPalette {
+            background-color: #999999;
+            width: 100px;
+            padding: 1em;
+        }
+    }
+    .colorPaletteContainerInfo {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .colorPaletteInfo {
+            text-align: center;
+            width: 100px;
+            padding: 1em;
+        }
+    }
+}
+
+#scroll_down {
+    position: absolute;
+    font-size: 4em;
+    bottom: 0;
+    left: 50vw;
+    margin-left: -15px;
+}
