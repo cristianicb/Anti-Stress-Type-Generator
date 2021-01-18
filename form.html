@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#fafafa">
+
+    <title>Anti-Stress Type Generator</title>
+
+    <meta name="description" content="">
+    <meta name="pinterest" content="nopin" />
+
+    <link rel="apple-touch-icon" href="./assets/img/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="icon" href="./assets/img/favicon.png">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/main.css.map">
+</head>
+
+<body>
+
+    <nav id="headerIndex">
+        <h1><a href="index.html">Anti-Stress Type Generator</a></h1>
+
+        <ul id="headerInfo">
+            <li> <a href="intructions.html">Instructions</a></li>
+            <li> <a href="aboutus.html">About us</a></li>
+        </ul>
+
+        <button id="hamburguerIndex"> <i class=" material-icons md-14 ">menu</i></button>
+    </nav>
+
+    <div id="mainIndex">
+        <div class="textContainer">
+            <p>This is the form that’s going to let us generate great ideas for your project.</p>
+            <p>Scroll down to fill it or directly press the arrow if you want a raw experience.</p>
+
+
+            <form action="" method="post">
+
+                <label class="formLabel">What style are you looking for?</label>
+
+                <div class="personalizedSelect">
+
+                    <select name="fontStyle" id="fontStyle">
+                    <option value="all">Any</option>
+                    <option value="modern">Modern</option>
+                    <option value="traditional">Traditional</option>
+                 </select>
+                    <!-- <img class="selectArrow" src="./assets/img/select_arrow.png" alt=""> -->
+                </div>
+
+                <label class="formLabel">Font type?</label>
+
+                <div class="personalizedSelect">
+                    <select name="typefaceType" id="fontType">
+                    <option value="all">All</option>
+                    <option value="serif">Serif</option>
+                    <option value="sans-serif">Sans Serif</option>
+                    <option value="display">Display</option>
+                    <option value="handwriting">Handwriting</option>
+                    <option value="monospace">Monospace</option>
+                  </select>
+                    <!-- <img class="selectArrow" src="./assets/img/select_arrow.png" alt=""> -->
+                </div>
+
+
+                <label class="formLabel" for="canvasPreset">Document type?</label>
+
+                <div class="personalizedSelect">
+                    <select name="canvasPreset" id="canvasPreset">
+                    <option value="personalized">Personalized</option>
+                    <optgroup label="Paper">
+                    <option value="dinA">DIN A</option>
+                    <option value="ansiLetter">ANSI Letter</option>
+                    <option value="ansiLegal">ANSI Letter</option>
+                </optgroup>
+                    <optgroup label="Digital">
+                    <option value="desktop">Desktop</option>
+                    <option value="iphonex">iPhone X</option>
+                </optgroup>
+                </select>
+
+                    <!-- <img class="selectArrow" src="./assets/img/select_arrow.png" alt=""> -->
+                </div>
+
+                <label class="formLabel" for="colorStyle">Colors?</label>
+
+                <div class="personalizedSelect">
+                    <select name="canvasPreset" id="colorStyle">
+                        <option value="bw">Black & white</option>
+                        <option value="modernColors">Modern</option>
+                        <option value="traditionalColors">Traditional</option>
+                        <option value="rainbow">Rainbow pls</option>
+                </select>
+
+                    <!-- <img class="selectArrow" src="./assets/img/select_arrow.png" alt=""> -->
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+    <img id="image01" src="./assets/img/stressskeleton.gif " alt="stressSkeleton ">
+    <img id="image02" src="./assets/img/image02.gif " alt="rightSkeleton ">
+
+    <a href="generator.html" id="arrow"><img src="./assets/img/arrow.png " alt="arrow "></a>
+
+
+
+
+
+    <script src="./app/modules/saveData.js"></script>
+
+
+    <script>
+        hamburguerIndex.onclick = function() {
+            if (headerInfo.style.display == "block") {
+                headerInfo.style.display = "none";
+            } else {
+                headerInfo.style.display = "block";
+            }
+
+        }
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

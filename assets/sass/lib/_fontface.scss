@@ -1,0 +1,8 @@
+$font_route_a: '../font/mondwest';
+@font-face {
+    font-family: 'Mondwest';
+    src: url('#{$font_route_a}/mondwest-regular-webfont.woff') format('woff'),
+    url('#{$font_route_a}/mondwest-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
